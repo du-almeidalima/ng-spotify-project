@@ -1,0 +1,118 @@
+@import "../theme/theme";
+
+/* Margin */
+$spacer: 1rem;
+
+/* Media Variables */
+$phone: 640px;
+$tablet: 768px;
+$desktop: 1024px;
+
+/* Classes */
+.app-container {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-title {
+  font-size: 48px;
+}
+
+.center-content{
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn {
+  padding: 16px 14px 18px;
+  border: 1px solid $gray-800;
+  outline: none;
+  border-radius: 50px;
+  font-weight: 900;
+  font-size: 1rem;
+  transition: background-color 300ms linear;
+
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  &.btn-half-block{
+    display: block;
+    width: 50%;
+  }
+
+  &.primary {
+    color: #fff;
+    background-color: $green;
+
+    &:hover {
+      background-color: $lightgreen;
+    }
+    &:active {
+      background-color: $darkgreen;
+    }
+  }
+}
+
+/* Spacing Utils */
+.mtop-0 {
+  margin-top: 0 !important;
+}
+.mtop-1 {
+  margin-top: ($spacer * .25) !important;
+}
+.mtop-2 {
+  margin-top: ($spacer * .5) !important;
+}
+.mtop-3 {
+  margin-top: ($spacer * 1) !important;
+}
+.mtop-4 {
+  margin-top: ($spacer * 1.5) !important;
+}
+.mtop-5 {
+  margin-top: ($spacer * 3.0) !important;
+}
+
+.h-10 {
+  height: 10% !important;
+}
+.h-15 {
+  height: 15% !important;
+}
+.h-25 {
+  height: 25% !important;
+}
+.h-50 {
+  height: 50% !important;
+}
+.h-75 {
+  height: 75% !important;
+}
+.h-100 {
+  height: 100% !important;
+}
+
+/* Medias */
+@media (min-width: $phone) and (max-width: $tablet) {
+  .app-container {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: $desktop) {
+  .app-container {
+    max-width: 85%;
+  }
+}
+
+@media (min-width: $desktop) {
+  .app-container {
+    max-width: 80%;
+  }
+}

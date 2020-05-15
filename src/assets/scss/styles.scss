@@ -1,0 +1,12 @@
+/* Project Global Styles */
+@import "partials/app-utils";
+@import "theme/theme";
+
+@font-face {
+  font-family: Roboto;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  color: #999999;
+}

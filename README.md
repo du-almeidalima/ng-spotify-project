@@ -2,7 +2,7 @@
 
 This is my project for the Venturus code challenge. In this document I will describe my development process.
 
-## First Step
+## Step 1 - Structuring the Project
 
 As a first step, since I've been gifted the screens already mocked up, I started to analyze the component, feature, state structure and replicated it in the app structure, creating the
 following initial structure: 
@@ -28,6 +28,12 @@ following initial structure:
 ```
 
 After designing the structure I started building the main blocks and doing the boilerplate work
+
+## Step 2 - Implementing Authentication
+
+I decided implementing authentication from the beginning because this is something that is going to 
+be part of the core of the project. To implement Oauth2 in Angular, I just used the procedure described in the Spotify 
+Documentation.
 
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2

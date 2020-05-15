@@ -1,0 +1,31 @@
+@import "src/assets/scss/styles";
+$padding-left: 5px;
+$line-height: 1px;
+
+.app-login-container {
+  position: relative;
+  padding: 20px 15px 0 15px;
+  margin: 0 auto;
+  width: 90%;
+  height: 60vh;
+  max-height: 80vh;
+}
+
+/* Medias */
+@media (min-width: $phone) and (max-width: $tablet) {
+  .app-login-container {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: $desktop) {
+  .app-login-container {
+    max-width: 80%;
+  }
+}
+
+@media (min-width: $desktop) {
+  .app-login-container {
+    max-width: 55%;
+  }
+}

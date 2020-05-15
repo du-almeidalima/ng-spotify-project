@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  identityProvider: 'https://accounts.spotify.com/authorize',
+  clientId: '2a6ab7a7882b487687d3de8450036199',
+  scope: 'user-read-private%20user-read-email',
+  callback: 'http:%2F%2Flocalhost:4200%2Fauth-response'
 };
 
 /*
