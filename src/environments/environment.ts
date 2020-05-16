@@ -4,10 +4,14 @@
 
 export const environment = {
   production: false,
+  // Identity Provider
   identityProvider: 'https://accounts.spotify.com/authorize',
   clientId: '2a6ab7a7882b487687d3de8450036199',
   scope: 'user-read-private%20user-read-email',
-  callback: 'http:%2F%2Flocalhost:4200%2Fauth-response'
+  callback: 'http://localhost:4200/login',
+  // APIs
+  baseUrl: 'https://api.spotify.com/v1',
+  getCurrentUser: '/me'
 };
 
 /*

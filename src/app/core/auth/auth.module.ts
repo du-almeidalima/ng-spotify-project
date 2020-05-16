@@ -6,8 +6,7 @@ import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
 
 const AUTH_ROUTES: Routes = [
-  { path: 'login', component: AuthComponent },
-  { path: 'auth-response', component: AuthComponent },
+  { path: 'login', component: AuthComponent }
 ]
 
 @NgModule({

@@ -10,6 +10,8 @@ import * as fromApp from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {storeLogger} from "ngrx-store-logger";
 import {CoreModule} from "./core/core.module";
+import {EffectsModule} from "@ngrx/effects";
+import {AuthEffects} from "./core/auth/store/auth.effects";
 
 // For Console Logging the State
 function logger(reducer: ActionReducer<fromApp.AppState>): any {
@@ -29,6 +31,7 @@ const metaReducers = env.production ? [] : [ logger ];
     BrowserModule,
     AppRoutesModule,
     StoreModule.forRoot(fromApp.reducers, { metaReducers }),
+    EffectsModule.forRoot( [ AuthEffects ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: env.production }),
     CoreModule
   ],
