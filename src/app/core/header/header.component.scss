@@ -1,0 +1,57 @@
+@import "src/styles";
+
+$img-size: 30px;
+
+.app-header-container {
+  padding: 10px 20px;
+
+  .app-header-user-profile-thumbnail {
+    border-radius: 50%;
+    height: $img-size;
+    transition: all 400ms;
+
+    &:hover {
+      filter: grayscale(0.5);
+    }
+  }
+
+  .app-header-menu {
+    background-color: $white;
+    visibility: hidden;
+    opacity: 0;
+    transition:  all 400ms;
+    right: 50%;
+    top: 40px;
+    transform: translateX($img-size / 2);
+    width: 200px;
+    padding: 15px 0;
+    border-radius: 5px;
+
+    & button {
+      background-color: transparent;
+      transition: background-color linear 300ms;
+      outline: none;
+      border: none;
+      width: 100%;
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: .75rem;
+      text-align: left;
+
+      &:hover {
+        background-color: $gray-300;
+      }
+    }
+  }
+
+  .app-header-logo {
+    height: $img-size;
+  }
+
+  .app-header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    vertical-align: super;
+    margin-left: 20px;
+  }
+}
