@@ -25,4 +25,4 @@ export class LogOut implements Action {
   readonly type = LOGOUT;
 }
 
-export type AuthActions = FetchUserData | AuthenticationSuccess | AutoLogin;
+export type AuthActions = FetchUserData | AuthenticationSuccess | AutoLogin | LogOut;

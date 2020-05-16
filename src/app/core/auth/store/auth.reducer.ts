@@ -15,7 +15,13 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
     case AuthActions.AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        user: action.payload
+        user: action.payload.user
+      };
+
+    case AuthActions.LOGOUT:
+      return {
+        ...state,
+        user: null
       };
 
     default:

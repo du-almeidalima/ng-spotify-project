@@ -2,16 +2,23 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import * as fromApp from './store/app.reducer';
 import * as AuthActions from './core/auth/store/auth.actions';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit{
+  public isUserAuthenticated: boolean;
+
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(new AuthActions.AutoLogin())
+    this.store.dispatch(new AuthActions.AutoLogin());
+    this.store.select('auth').pipe( map(authState => authState.user))
+      .subscribe( user => {
+        this.isUserAuthenticated = !!user;
+      })
   }
 }
 
