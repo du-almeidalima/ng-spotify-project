@@ -11,19 +11,24 @@ following initial structure:
             |-- app
             |-- core
                 |-- auth
-                |-- home
+                |-- header
             |-- modules
-                |-- feature 1
+                |-- music
                     |-- feature1-routes.module.ts
                     |-- feature1.module.ts
                     |-- feature1.component.ts
                     |-- feature1.component.scss
                     |-- feature1.component.html
-                |-- feature 2
                 ...
             |-- shared
+                |-- directives
+                |-- components
+                ...
             |-- store
+                |-- app.reducers.ts
         |-- assets
+            |-- img
+            |-- scss
         |-- environment
 ```
 
@@ -33,7 +38,13 @@ After designing the structure I started building the main blocks and doing the b
 
 I decided implementing authentication from the beginning because this is something that is going to 
 be part of the core of the project. To implement Oauth2 in Angular, I just used the procedure described in the Spotify 
-Documentation.
+Documentation. To implement the user state I used NgRx, the dispatch actions when it receives the user from the Spotify and set this user
+on state. Also, a JWT token is stored in the Local Storage so when the user refreshes the page it doesn't loose the user data.
+
+## Step 3 - Implementing the Music Feature Module
+
+With the Authentication and the App structure set, I started implementing the main feature, the albums and music search. For this
+I created a feature module, located in the ./modules folder. I also used Lazy Loading of this module to decrease the initial bundle size.
 
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2

@@ -12,6 +12,7 @@ import {storeLogger} from "ngrx-store-logger";
 import {CoreModule} from "./core/core.module";
 import {EffectsModule} from "@ngrx/effects";
 import {AuthEffects} from "./core/auth/store/auth.effects";
+import {SharedModule} from "./shared/shared.module";
 
 // For Console Logging the State
 function logger(reducer: ActionReducer<fromApp.AppState>): any {
@@ -29,11 +30,12 @@ const metaReducers = env.production ? [] : [ logger ];
   ],
   imports: [
     BrowserModule,
-    AppRoutesModule,
     StoreModule.forRoot(fromApp.reducers, { metaReducers }),
     EffectsModule.forRoot( [ AuthEffects ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: env.production }),
-    CoreModule
+    CoreModule,
+    SharedModule,
+    AppRoutesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

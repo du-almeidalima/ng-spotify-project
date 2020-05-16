@@ -49,7 +49,7 @@ export class AuthEffects {
     ofType(AuthActions.AUTHENTICATION_SUCCESS),
     tap((authAction: AuthActions.AuthActions) => {
       if (authAction instanceof AuthActions.AuthenticationSuccess && authAction.payload.redirect) {
-        this.router.navigate(['/home'])
+        this.router.navigate(['/music'])
       }
     })
   )

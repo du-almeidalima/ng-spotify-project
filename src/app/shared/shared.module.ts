@@ -1,16 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import { DropdownDirective } from './directives/dropdown.directive';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RouterModule } from "@angular/router";
 
 @NgModule({
   declarations: [
-    DropdownDirective
+    DropdownDirective,
+    PageNotFoundComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
-    DropdownDirective
+    DropdownDirective,
+    PageNotFoundComponent
   ]
 })
 export class SharedModule {
