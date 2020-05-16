@@ -22,6 +22,18 @@ $desktop: 1024px;
   font-size: 48px;
 }
 
+.text-black {
+  color: $black;
+}
+
+.text-gray {
+  color: $gray-700;
+}
+
+.text-white {
+  color: $white;
+}
+
 .center-content{
   margin-left: 50%;
   transform: translateX(-50%);
