@@ -1,0 +1,62 @@
+@import "src/styles";
+
+$padding-left: 20px;
+$height: 2em;
+
+.app-music-search-input-control {
+  position: relative;
+  top: 5vh;
+  width: 100%;
+
+  .app-music-search-input {
+    display: block;
+    outline: none;
+    height: $height;
+    padding: 0;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $gray-300;
+    font-size: 48px;
+    font-weight: bold;
+    color: $white;
+
+    &:focus + .app-music-search-label {
+      transform: translate(-.20em, -5rem) scale(0.75);
+      transform-origin: left;
+    }
+    &:not(:placeholder-shown) + .app-music-search-label{
+      transform: translate(-.20em, -5rem) scale(0.75);
+      transform-origin: left;
+    }
+
+    &:focus ~ .app-music-search-active-line, &:active ~ .app-music-search-active-line {
+      width: 100%;
+    }
+  }
+
+  .app-music-search-label {
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.2s all ease-out;
+  }
+
+  .app-music-search-active-line {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    background: -webkit-linear-gradient($green);
+    background: -o-linear-gradient($green);
+    background: -moz-linear-gradient($green);
+    background: linear-gradient($green, $green);
+  }
+}

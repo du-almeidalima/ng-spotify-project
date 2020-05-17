@@ -1,12 +1,12 @@
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {MusicComponent} from "./music.component";
-import {AuthGuard} from "../../core/auth/auth.guard";
+import {SearchAlbumsComponent} from "./search-albums/search-albums.component";
 
 const MUSIC_ROUTES: Routes = [
   { path: '', component: MusicComponent, children:
       [
-
+        { path: '', component: SearchAlbumsComponent}
       ]
   }
 ]
