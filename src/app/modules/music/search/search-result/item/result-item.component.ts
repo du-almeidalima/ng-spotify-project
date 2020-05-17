@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Album} from "../../../../../shared/models/album";
+import {SearchResultItem} from "../../../../../shared/models/search-result-item";
 
 @Component({
   selector: 'app-result-item',
@@ -8,7 +8,7 @@ import {Album} from "../../../../../shared/models/album";
 })
 export class ResultItemComponent {
 
-  @Input() public item: Album;
+  @Input() public item: SearchResultItem;
 
   constructor() { }
 

@@ -23,6 +23,7 @@ following initial structure:
             |-- shared
                 |-- directives
                 |-- components
+                |-- models
                 ...
             |-- store
                 |-- app.reducers.ts
@@ -45,6 +46,10 @@ on state. Also, a JWT token is stored in the Local Storage so when the user refr
 
 With the Authentication and the App structure set, I started implementing the main feature, the albums and music search. For this
 I created a feature module, located in the ./modules folder. I also used Lazy Loading of this module to decrease the initial bundle size.
+
+### Step 3.1 - Music Components
+
+I choose to implement a less opinied design aproach, even though the app is used for searching albums, I did 
 
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2
