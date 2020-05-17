@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {Store} from "@ngrx/store";
+import * as fromApp from '../../../../store/app.reducer';
+import * as MusicActions from '../../store/music.actions';
 
 @Component({
   selector: 'app-search-input',
   templateUrl: './search-input.component.html',
   styleUrls: ['./search-input.component.scss']
 })
-export class SearchInputComponent implements OnInit {
+export class SearchInputComponent {
+  private searchTimeoutId: any;
 
-  constructor() { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
-  ngOnInit(): void {}
-
+  public onType(e) {
+    clearTimeout(this.searchTimeoutId)
+    this.searchTimeoutId = setTimeout(() => {
+      const searchTerm = e.target.value;
+      if (searchTerm !== '') {
+        this.store.dispatch(new MusicActions.StartSearch(searchTerm))
+      }
+    }, 1000)
+  }
 }

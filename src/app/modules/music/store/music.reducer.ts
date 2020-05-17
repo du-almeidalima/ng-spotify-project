@@ -1,4 +1,4 @@
-import {Action} from "@ngrx/store";
+import * as MusicActions from './music.actions';
 
 export interface MusicState {
   isLoading: boolean,
@@ -10,8 +10,14 @@ const initialState: MusicState = {
   albums: []
 }
 
-const musicReducer = (state: MusicState, action: Action) => {
-
+const musicReducer = (state: MusicState = initialState, action: MusicActions.MusicActions) => {
+  switch (action.type) {
+    case MusicActions.START_SEARCH:
+      return {
+        ...state,
+        isLoading: true
+      }
+  }
 }
 
 export { musicReducer }

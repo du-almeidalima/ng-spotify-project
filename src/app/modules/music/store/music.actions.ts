@@ -7,4 +7,4 @@ export class StartSearch implements Action {
   constructor (public payload: string) {}
 }
 
-export type AuthActions = StartSearch;
+export type MusicActions = StartSearch;
