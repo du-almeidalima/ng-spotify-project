@@ -3,11 +3,13 @@ import {CommonModule} from "@angular/common";
 import { DropdownDirective } from './directives/dropdown.directive';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule } from "@angular/router";
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
     DropdownDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -15,7 +17,8 @@ import { RouterModule } from "@angular/router";
   ],
   exports: [
     DropdownDirective,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule {

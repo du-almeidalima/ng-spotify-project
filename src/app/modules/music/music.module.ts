@@ -6,6 +6,7 @@ import {SearchInputComponent} from "./search/search-input/search-input.component
 import {SearchResultComponent} from "./search/search-result/search-result.component";
 import {ResultItemComponent} from "./search/search-result/item/result-item.component";
 import {SearchComponent} from "./search/search.component";
+import {SharedModule} from "../../shared/shared.module";
 
 
 
@@ -19,7 +20,8 @@ import {SearchComponent} from "./search/search.component";
   ],
   imports: [
     CommonModule,
-    MusicRoutesModule
+    MusicRoutesModule,
+    SharedModule
   ]
 })
 export class MusicModule { }
