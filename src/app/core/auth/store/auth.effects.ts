@@ -9,7 +9,7 @@ import * as AuthActions from "./auth.actions";
 import {UserDataResponse} from "../../../shared/models/api/user-data-response";
 import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
 import {forkJoin, of} from "rxjs";
-import {UserModel} from "../../../shared/models/user.model";
+import {User} from "../../../shared/models/user";
 import {AuthService} from "../auth.service";
 
 
@@ -61,7 +61,7 @@ export class AuthEffects {
       const restoredUser  = JSON.parse(localStorage.getItem(this.LS_TOKEN));
       if (restoredUser) {
         const { name, profileImg, tokenType, _token, _tokenExpirationDate } = restoredUser;
-        const user = new UserModel(name, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
+        const user = new User(name, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
 
         // Checking if token has expired
         if (user.token) {
@@ -103,7 +103,7 @@ export class AuthEffects {
   private handleAuthenticationSuccess(userData: AuthenticationResponse & UserDataResponse): AuthActions.AuthActions{
     const expirationDate = new Date().getTime() + (+userData.expires_in * 1000);
     const {display_name, access_token, token_type, images} = userData
-    const user = new UserModel(display_name, images[0].url, token_type, access_token, expirationDate);
+    const user = new User(display_name, images[0].url, token_type, access_token, expirationDate);
 
     localStorage.setItem(this.LS_TOKEN, JSON.stringify(user));
     return new AuthActions.AuthenticationSuccess({ user, redirect: true});

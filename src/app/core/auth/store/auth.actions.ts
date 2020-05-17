@@ -1,6 +1,6 @@
 import {Action} from "@ngrx/store";
 import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
-import {UserModel} from "../../../shared/models/user.model";
+import {User} from "../../../shared/models/user";
 
 export const FETCH_USER_DATA = '[Auth] Fetch User Data';
 export const AUTHENTICATION_SUCCESS = '[Auth] Authentication Success';
@@ -14,7 +14,7 @@ export class FetchUserData implements Action {
 
 export class AuthenticationSuccess implements Action {
   readonly type = AUTHENTICATION_SUCCESS;
-  constructor (public payload: { user: UserModel, redirect: boolean }) {}
+  constructor (public payload: { user: User, redirect: boolean }) {}
 }
 
 export class AutoLogin implements Action {

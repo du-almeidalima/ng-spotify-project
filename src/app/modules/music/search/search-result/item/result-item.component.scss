@@ -1,0 +1,13 @@
+@import "src/styles";
+
+.app-item-container {
+
+  .app-item-cover {
+    width: 100%;
+  }
+
+  span {
+    @extend .text-center;
+    display: block;
+  }
+}

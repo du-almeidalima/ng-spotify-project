@@ -1,8 +1,8 @@
-import { UserModel } from "../../../shared/models/user.model";
+import { User } from "../../../shared/models/user";
 import * as AuthActions from "./auth.actions";
 
 export interface AuthState {
-  user: UserModel
+  user: User
 }
 
 const initialState: AuthState = {

@@ -1,14 +1,14 @@
 @import "src/styles";
 
 $padding-left: 20px;
-$height: 2em;
+$height: 1.5em;
 
-.app-music-search-input-control {
+.app-search-input-control {
   position: relative;
-  top: 5vh;
+  top: 4vh;
   width: 100%;
 
-  .app-music-search-input {
+  .app-search-input {
     display: block;
     outline: none;
     height: $height;
@@ -17,25 +17,25 @@ $height: 2em;
     width: 100%;
     border: none;
     border-bottom: 1px solid $gray-300;
-    font-size: 48px;
+    font-size: 40px;
     font-weight: bold;
     color: $white;
 
-    &:focus + .app-music-search-label {
-      transform: translate(-.20em, -5rem) scale(0.75);
+    &:focus + .app-search-label {
+      transform: translate(-.20em, -3.5rem) scale(0.75);
       transform-origin: left;
     }
-    &:not(:placeholder-shown) + .app-music-search-label{
-      transform: translate(-.20em, -5rem) scale(0.75);
+    &:not(:placeholder-shown) + .app-search-label{
+      transform: translate(-.20em, -3.5rem) scale(0.75);
       transform-origin: left;
     }
 
-    &:focus ~ .app-music-search-active-line, &:active ~ .app-music-search-active-line {
+    &:focus ~ .app-search-active-line, &:active ~ .app-search-active-line {
       width: 100%;
     }
   }
 
-  .app-music-search-label {
+  .app-search-label {
     position: absolute;
     pointer-events: none;
     top: 50%;
@@ -43,7 +43,7 @@ $height: 2em;
     transition: 0.2s all ease-out;
   }
 
-  .app-music-search-active-line {
+  .app-search-active-line {
     position: absolute;
     left: 0;
     bottom: -1px;

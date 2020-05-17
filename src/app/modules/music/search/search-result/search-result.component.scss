@@ -1,0 +1,30 @@
+@import "src/styles";
+
+.app-search-result-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 50px;
+  margin-top: 3vh;
+}
+
+
+/* Medias */
+@media (min-width: $phone) and (max-width: $tablet) {
+  .app-search-result-container{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 50px;
+  }
+}
+
+@media (min-width: $tablet) and (max-width: $desktop) {
+  .app-search-result-container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: $desktop) {
+  .app-search-result-container{
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px 50px;
+  }
+}
