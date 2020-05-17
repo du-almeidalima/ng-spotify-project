@@ -3,31 +3,50 @@ $padding-left: 5px;
 $line-height: 1px;
 
 .app-login-container {
-  background-color: $white;
   position: relative;
   padding: 20px 15px 0 15px;
-  margin: 10vh auto;
+  margin: 5vh auto;
   width: 90%;
   border-radius: 15px;
   height: 60vh;
   max-height: 80vh;
+
+  img {
+    max-height: 100%;
+  }
 }
 
 /* Medias */
+@media (max-width: $phone) {
+  .app-login-container {
+    max-width: 90%;
+
+    .btn-half-block {
+      width: 100%;
+    }
+  }
+}
+
 @media (min-width: $phone) and (max-width: $tablet) {
   .app-login-container {
     max-width: 90%;
+
+    .btn-half-block {
+      width: 60%;
+    }
   }
 }
 
 @media (min-width: $tablet) and (max-width: $desktop) {
   .app-login-container {
+    margin: 10vh auto;
     max-width: 80%;
   }
 }
 
 @media (min-width: $desktop) {
   .app-login-container {
+    margin: 10vh auto;
     max-width: 45%;
   }
 }

@@ -6,10 +6,10 @@ import {map, switchMap, tap} from "rxjs/operators";
 
 import {environment as env} from "../../../../environments/environment";
 import * as AuthActions from "./auth.actions";
-import {UserDataResponse} from "../model/api/user-data-response";
-import {AuthenticationResponse} from "../model/api/authentication-response";
+import {UserDataResponse} from "../../../shared/models/api/user-data-response";
+import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
 import {forkJoin, of} from "rxjs";
-import {UserModel} from "../model/user.model";
+import {UserModel} from "../../../shared/models/user.model";
 import {AuthService} from "../auth.service";
 
 

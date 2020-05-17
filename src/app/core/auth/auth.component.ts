@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {environment as env} from "../../../environments/environment";
 import {HttpParams} from "@angular/common/http";
 import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
-import {AuthenticationResponse} from "./model/api/authentication-response";
 import {Store} from "@ngrx/store";
+import {environment as env} from "../../../environments/environment";
+import {AuthenticationResponse} from "../../shared/models/api/authentication-response";
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
 

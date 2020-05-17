@@ -1,4 +1,4 @@
-import { UserModel } from "../model/user.model";
+import { UserModel } from "../../../shared/models/user.model";
 import * as AuthActions from "./auth.actions";
 
 export interface AuthState {

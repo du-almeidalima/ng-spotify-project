@@ -1,6 +1,6 @@
 import {Action} from "@ngrx/store";
-import {AuthenticationResponse} from "../model/api/authentication-response";
-import {UserModel} from "../model/user.model";
+import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
+import {UserModel} from "../../../shared/models/user.model";
 
 export const FETCH_USER_DATA = '[Auth] Fetch User Data';
 export const AUTHENTICATION_SUCCESS = '[Auth] Authentication Success';
