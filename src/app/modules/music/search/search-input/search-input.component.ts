@@ -19,6 +19,8 @@ export class SearchInputComponent {
       const searchTerm = e.target.value;
       if (searchTerm !== '') {
         this.store.dispatch(new MusicActions.StartSearch(searchTerm))
+      } else {
+        this.store.dispatch(new MusicActions.ClearSearchResult())
       }
     }, 1000)
   }

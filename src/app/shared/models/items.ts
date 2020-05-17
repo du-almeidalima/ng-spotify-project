@@ -1,4 +1,4 @@
-import {ItemType} from "./enums/item-type";
+import { ItemType } from "./enums/item-type";
 
 export interface Artist {
   type: ItemType.artist;

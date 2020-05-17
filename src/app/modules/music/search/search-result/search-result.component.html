@@ -1,7 +1,17 @@
 <div class="mtop-5 relative">
-  <app-loading></app-loading>
-  <h3 class="text-white mtop-3">Results for "Bob"</h3>
-  <div class="app-search-result-container">
-    <app-result-item [item]="getResultItem(item)" *ngFor="let item of results.albums"></app-result-item>
+  <app-loading *ngIf="isLoading"></app-loading>
+  <div class="app-search-result-wrapper">
+    <ng-container *ngIf="searchResult != null; then results; else emptyResults"></ng-container>
   </div>
 </div>
+
+<ng-template #emptyResults>
+  <h1>You haven't searched for anything yet...</h1>
+</ng-template>
+
+<ng-template #results>
+  <h3 class="text-white">Results for "Bob"</h3>
+  <div class="app-search-result-container">
+    <app-result-item [item]="getResultItem(item)" *ngFor="let item of searchResult.albums"></app-result-item>
+  </div>
+</ng-template>

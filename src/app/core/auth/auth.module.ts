@@ -3,7 +3,8 @@ import {AuthComponent} from './auth.component';
 import {RouterModule, Routes} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {AuthInterceptor} from "./auth.interceptor";
 
 const AUTH_ROUTES: Routes = [
   { path: 'login', component: AuthComponent }
@@ -16,6 +17,13 @@ const AUTH_ROUTES: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forChild(AUTH_ROUTES)
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ]
 })
 export class AuthModule { }

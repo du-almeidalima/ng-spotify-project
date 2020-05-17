@@ -1,5 +1,10 @@
 @import "src/styles";
 
+.app-search-result-wrapper{
+  margin-top: 10vh;
+  height: 100%;
+}
+
 .app-search-result-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

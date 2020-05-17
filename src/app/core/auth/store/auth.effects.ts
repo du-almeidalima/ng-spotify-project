@@ -1,22 +1,23 @@
-import {Actions, Effect, ofType} from '@ngrx/effects';
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {forkJoin, of} from "rxjs";
 import {map, switchMap, tap} from "rxjs/operators";
 
 import {environment as env} from "../../../../environments/environment";
-import * as AuthActions from "./auth.actions";
 import {UserDataResponse} from "../../../shared/models/api/user-data-response";
 import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
-import {forkJoin, of} from "rxjs";
 import {User} from "../../../shared/models/user";
 import {AuthService} from "../auth.service";
+import * as AuthActions from "./auth.actions";
 
 
 @Injectable()
 export class AuthEffects {
   private readonly GET_CURRENT_USER = env.baseUrl + env.getCurrentUser;
-  private readonly LS_TOKEN = 'UserToken'
+  private readonly LS_TOKEN = 'UserToken';
+
   constructor (
     private actions$: Actions,
     private http: HttpClient,

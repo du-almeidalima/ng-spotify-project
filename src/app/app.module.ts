@@ -13,6 +13,7 @@ import {CoreModule} from "./core/core.module";
 import {EffectsModule} from "@ngrx/effects";
 import {AuthEffects} from "./core/auth/store/auth.effects";
 import {SharedModule} from "./shared/shared.module";
+import {MusicEffects} from "./modules/music/store/music.effects";
 
 // For Console Logging the State
 function logger(reducer: ActionReducer<fromApp.AppState>): any {
@@ -31,7 +32,7 @@ const metaReducers = env.production ? [] : [ logger ];
   imports: [
     BrowserModule,
     StoreModule.forRoot(fromApp.reducers, { metaReducers }),
-    EffectsModule.forRoot( [ AuthEffects ]),
+    EffectsModule.forRoot( [ AuthEffects, MusicEffects ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: env.production }),
     CoreModule,
     SharedModule,
