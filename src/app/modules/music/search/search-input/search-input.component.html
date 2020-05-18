@@ -1,10 +1,11 @@
 <div class="app-search-input-control">
   <input
+    (keyup)="onType($event)"
+    #searchInput
     class="app-search-input"
     type="text"
     placeholder="&nbsp;"
     id="search"
-    (keyup)="onType($event)"
   >
   <label class="app-search-label" for="search">Search for albums, artists or music</label>
   <span class="app-search-active-line"></span>

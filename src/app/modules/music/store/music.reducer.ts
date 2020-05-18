@@ -4,11 +4,13 @@ import * as MusicActions from './music.actions';
 export interface MusicState {
   isLoading: boolean;
   searchResult: SearchResult;
+  lastSearch: string;
 }
 
 const initialState: MusicState = {
   isLoading: false,
-  searchResult: null
+  searchResult: null,
+  lastSearch: null
 }
 
 const musicReducer = (state: MusicState = initialState, action: MusicActions.MusicActions) => {
@@ -17,21 +19,23 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
     case MusicActions.START_SEARCH:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        lastSearch: action.payload
       }
 
     case MusicActions.SET_SEARCH_RESULT:
       return {
         ...state,
-        searchResult: action.payload,
-        isLoading: false
+        isLoading: false,
+        searchResult: action.payload
       }
 
     case MusicActions.CLEAR_SEARCH_RESULT:
       return {
         ...state,
+        isLoading: false,
         searchResult: null,
-        isLoading: false
+        lastSearch: null
       }
 
     default:
