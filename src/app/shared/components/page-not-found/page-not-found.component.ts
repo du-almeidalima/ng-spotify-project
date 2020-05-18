@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       <h1 class="text-center">Sorry</h1>
       <h2 class="text-center">We couldn't find this page.</h2>
 
-      <a class="text-center" routerLink="/music">Back to Music</a>
+      <a class="text-center" routerLink="/music/search/">Back to Music</a>
     </div>
   `,
   styles: [`
