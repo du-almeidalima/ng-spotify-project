@@ -1,17 +1,26 @@
 import { ItemType } from "./enums/item-type";
 
 export interface Artist {
-  type: ItemType.artist;
   name: string;
   id: string;
+  type: ItemType.artist;
 }
 
 export interface Album {
   name: string;
   id: string;
   type: ItemType.album;
-  artists: Artist[];
   images: string[];
+  artists: Artist[];
+  tracks?: Track[]
 }
 
-export type Item = Artist | Album;
+export interface Track {
+  name: string;
+  id: string;
+  type: ItemType.track;
+  duration: string;
+  previewUrl: string;
+}
+
+export type Item = Artist | Album | Track;

@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Store} from "@ngrx/store";
+import {Subscription} from "rxjs";
+import {Album} from "../../../shared/models/items";
+import * as fromApp from '../../../store/app.reducer';
+import {map} from "rxjs/operators";
+import {ItemType} from "../../../shared/models/enums/item-type";
 
 @Component({
   selector: 'app-album',
@@ -8,10 +13,21 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AlbumComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  public album: Album;
+  private storeSub: Subscription;
+
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-
+    this.storeSub = this.store.select('music')
+      .pipe(
+        map(musicState => musicState.currentItem)
+      )
+      .subscribe(item => {
+        if (item.type === ItemType.album) {
+          this.album = item
+        }
+      })
   }
 
 }

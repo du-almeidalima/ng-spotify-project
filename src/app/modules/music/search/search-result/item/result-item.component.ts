@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {SearchResultItem} from "../../../../../shared/models/search-result-item";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-result-item',
@@ -10,9 +11,9 @@ export class ResultItemComponent {
 
   @Input() public item: SearchResultItem;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   public onAlbumClick(): void {
-    console.log(this.item)
+    this.router.navigate(['../../album', this.item.id], { relativeTo: this.route })
   }
 }

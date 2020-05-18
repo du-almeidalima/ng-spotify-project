@@ -10,26 +10,7 @@ import { Component, OnInit } from '@angular/core';
       <a class="text-center" routerLink="/music/search/">Back to Music</a>
     </div>
   `,
-  styles: [`
-    div {
-      margin-top: 50%;
-      transform: translateY(-100%);
-      width: 100%;
-      height: 100%;
-    }
-    h1 {
-      font-size: 4em;
-    }
-    h2 {
-      font-size: 3em;
-    }
-    a {
-      color: #1ED760;
-      text-decoration: none;
-      font-size: 2em;
-      display: block;
-    }
-  `]
+  styleUrls: ['./page-not-found.component.scss']
 })
 export class PageNotFoundComponent implements OnInit {
 

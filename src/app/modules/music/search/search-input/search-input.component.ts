@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import {Store} from "@ngrx/store";
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Location } from "@angular/common";
+import { Store } from "@ngrx/store";
+import { Subscription } from "rxjs";
+import { map, take } from "rxjs/operators";
 import * as fromApp from '../../../../store/app.reducer';
-import {Location} from "@angular/common";
-import {Subscription} from "rxjs";
-import {map, take} from "rxjs/operators";
 import * as MusicActions from '../../store/music.actions';
 
 @Component({

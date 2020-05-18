@@ -1,1 +1,7 @@
-<p>album works!</p>
+<h1>{{album.name}}</h1>
+<h3>{{album.artists}}</h3>
+<h3>{{album.id}}</h3>
+<br>
+<ul>
+  <li *ngFor="let track of album.tracks">{{track.name}} | {{track.duration}}</li>
+</ul>

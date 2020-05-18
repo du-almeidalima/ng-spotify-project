@@ -13,7 +13,8 @@ export const environment = {
   baseUrl: 'https://api.spotify.com/v1',
   getCurrentUser: '/me',
   search: '/search',
-  searchType: 'album'
+  searchType: 'album',
+  albums: '/albums'
 };
 
 /*
