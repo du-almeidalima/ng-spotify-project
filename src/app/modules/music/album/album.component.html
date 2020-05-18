@@ -1,7 +1,17 @@
-<h1>{{album.name}}</h1>
-<h3>{{album.artists}}</h3>
-<h3>{{album.id}}</h3>
-<br>
-<ul>
-  <li *ngFor="let track of album.tracks">{{track.name}} | {{track.duration}}</li>
-</ul>
+<a class="app-album-back-link text-primary pointer" (click)="navigateBack()">
+  Back
+</a>
+<div class="app-album-container">
+  <div class="app-album-header">
+    <div class="app-album-cover">
+      <img class="app-album-cover" [src]="album.images[0]" alt="Album Cover">
+    </div>
+    <h2 class="text-primary text-center">{{album.name}}</h2>
+    <h3 class="text-secondary text-center">{{artistsNames}}</h3>
+  </div>
+  <div class="app-album-tracks">
+    <ul>
+      <li *ngFor="let track of album.tracks">{{track.name}} | {{track.duration}}</li>
+    </ul>
+  </div>
+</div>

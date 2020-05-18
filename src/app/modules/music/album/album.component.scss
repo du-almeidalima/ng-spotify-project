@@ -1,0 +1,78 @@
+@import "src/styles";
+
+.app-album-container {
+  margin-top: 25px;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .app-album-header {
+
+    .app-album-cover {
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: 35px;
+    }
+    h3 {
+      margin-top: 10px;
+    }
+  }
+
+  .app-album-tracks {
+
+  }
+}
+
+.app-album-back-link{
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+
+  /* Left Chevron */
+  &::before {
+    content: '';
+    display: inline-block;
+    position: relative;
+    top: 0.39em;
+    left: 0.25em;
+    border-style: solid;
+    border-width: 0.25em 0.25em 0 0;
+    border-radius: 2px;
+    height: 0.25em;
+    width: 0.25em;
+    margin-right: 5px;
+    transform: rotate(-135deg);
+    vertical-align: top;
+  }
+}
+
+/* Medias */
+
+@media (min-width: $phone) {
+  .app-album-container {
+    flex-flow: row nowrap;
+    .app-album-tracks {
+      flex: 0 0 70%;
+    }
+
+    .app-album-header {
+      flex: 0 0 30%;
+    }
+  }
+}
+@media (min-width: $tablet) {
+  .app-album-container {
+    flex-flow: row nowrap;
+    .app-album-tracks {
+      flex: 0 0 60%;
+    }
+
+    .app-album-header {
+      flex: 0 0 40%;
+    }
+  }
+}

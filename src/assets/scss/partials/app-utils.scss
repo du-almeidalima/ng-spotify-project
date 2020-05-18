@@ -27,12 +27,12 @@ $desktop: 1024px;
   color: $black;
 }
 
-.text-gray {
+.text-secondary {
   color: $gray-700;
 }
 
-.text-light-gray {
-  color: $gray-400;
+.text-primary {
+  color: $gray-100;
 }
 
 .text-white {
@@ -144,8 +144,8 @@ $desktop: 1024px;
 .h-15 {
   height: 15% !important;
 }
-.h-25 {
-  height: 25% !important;
+.h-20 {
+  height: 20% !important;
 }
 .h-50 {
   height: 50% !important;

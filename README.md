@@ -47,9 +47,15 @@ on state. Also, a JWT token is stored in the Local Storage so when the user refr
 With the Authentication and the App structure set, I started implementing the main feature, the albums and music search. For this
 I created a feature module, located in the ./modules folder. I also used Lazy Loading of this module to decrease the initial bundle size.
 
-### Step 3.1 - Music Components
+In this module I'll have the component used for search (Search Component) that will be assigned to ``/music/search``. And for every type
+of result, Albums, Artists, Episodes, a component can be created to display the details. In this app there's only the ``/music/album/{id}``
 
-I choose to implement a less opinied design aproach, even though the app is used for searching albums, I did 
+### Step 3.1 - Music Component
+
+I choose to implement a less opinionated design approach, even though the app is being only used for searching albums, I designed the 
+search result as an object that, for now contains only Albums, but in the future could extend to have Tracks, Artists, Shows...
+
+### Step 3.2 - Tracks
 
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2

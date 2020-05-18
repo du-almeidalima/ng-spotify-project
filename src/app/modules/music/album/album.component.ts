@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
+import {Location} from "@angular/common";
 import {Subscription} from "rxjs";
-import {Album} from "../../../shared/models/items";
-import * as fromApp from '../../../store/app.reducer';
 import {map} from "rxjs/operators";
 import {ItemType} from "../../../shared/models/enums/item-type";
+import {Album} from "../../../shared/models/items";
+import * as fromApp from '../../../store/app.reducer';
 
 @Component({
   selector: 'app-album',
@@ -16,7 +17,11 @@ export class AlbumComponent implements OnInit {
   public album: Album;
   private storeSub: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>) { }
+  get artistsNames(): string {
+    return this.album.artists.map(a => a.name).join();
+  }
+
+  constructor(private store: Store<fromApp.AppState>, private location: Location) { }
 
   ngOnInit(): void {
     this.storeSub = this.store.select('music')
@@ -30,4 +35,7 @@ export class AlbumComponent implements OnInit {
       })
   }
 
+  public navigateBack(): void {
+    this.location.back();
+  }
 }
