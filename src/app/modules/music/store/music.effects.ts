@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Store} from "@ngrx/store";
-import {map, switchMap} from "rxjs/operators";
 import {Actions, Effect, ofType} from "@ngrx/effects";
-
+import {map, switchMap} from "rxjs/operators";
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
 import {environment as env} from "../../../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
 import {SearchResponse} from "../../../shared/models/api/search-response";
 import {SearchResult} from "../../../shared/models/search-result";
 import {ItemMapper} from "../../../shared/utils/item-mapper";
