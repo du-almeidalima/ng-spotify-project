@@ -19,7 +19,7 @@ $height: 1.5em;
     border-bottom: 1px solid $gray-300;
     font-size: 40px;
     font-weight: bold;
-    color: $white;
+    color: $gray-600;
 
     &:focus + .app-search-label {
       transform: translate(-.20em, -3.5rem) scale(0.75);

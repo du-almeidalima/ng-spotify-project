@@ -10,7 +10,7 @@
 </ng-template>
 
 <ng-template #results>
-  <h3 class="text-white">Results for "Bob"</h3>
+  <h3 class="text-white">Results for "{{searchTerm}}"</h3>
   <div class="app-search-result-container">
     <app-result-item [item]="getResultItem(item)" *ngFor="let item of searchResult.albums"></app-result-item>
   </div>

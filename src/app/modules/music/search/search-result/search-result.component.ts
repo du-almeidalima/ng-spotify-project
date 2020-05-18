@@ -15,6 +15,7 @@ import * as fromApp from '../../../../store/app.reducer';
 export class SearchResultComponent implements OnInit, OnDestroy{
 
   public searchResult: SearchResult;
+  public searchTerm: string;
   public isLoading = false;
   private storeSub: Subscription;
 
@@ -23,9 +24,9 @@ export class SearchResultComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.storeSub = this.store.select('music')
       .subscribe(musicState => {
-        console.log(musicState)
         this.searchResult = musicState.searchResult;
         this.isLoading = musicState.isLoading;
+        this.searchTerm = musicState.lastSearch;
       });
   }
 
