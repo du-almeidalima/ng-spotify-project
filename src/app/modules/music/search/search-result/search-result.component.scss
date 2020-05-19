@@ -25,7 +25,7 @@
 
 @media (min-width: $small) and (max-width: $medium) {
   .app-search-result-container{
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px 50px;
   }
 }
@@ -40,6 +40,6 @@
 @media (min-width: $large) {
   .app-search-result-container{
     grid-template-columns: repeat(5, 1fr);
-    gap: 30px 50px;
+    gap: 30px 30px;
   }
 }
