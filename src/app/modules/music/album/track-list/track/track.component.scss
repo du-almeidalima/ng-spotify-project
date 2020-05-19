@@ -1,17 +1,14 @@
 @import "src/styles";
 
 $margin-left: 40px;
+$transition-duration: 400ms;
 
 .app-track {
   display: flex;
   justify-content: space-between;
-  transition: background-color 400ms ease-out;
-  padding: 5px 2px;
+  transition: color $transition-duration ease-out;
   border-radius: 5px;
-
-  &:hover {
-    background-color: $gray-900;
-  }
+  margin-bottom: 20px;
 
   .app-track-title {
 
@@ -25,6 +22,7 @@ $margin-left: 40px;
     }
 
     .app-track-name {
+      transition: color $transition-duration ease-out;
       text-overflow: ellipsis;
       white-space: nowrap;
       width: $tiny - $margin-left;
@@ -75,4 +73,20 @@ $margin-left: 40px;
       display: inline-block;
     }
   }
+}
+
+.play {
+  color: $green;
+
+  .app-track-title {
+    .app-track-name {
+      color: $green;
+    }
+  }
+}
+
+@keyframes playing {
+  0% { color: $darkgreen; }
+  50% { color: $green }
+  100% { color: $lightgreen }
 }

@@ -12,9 +12,11 @@ export class TrackComponent {
   public track: Track;
   @Input()
   public index: number;
+  @Input()
+  public isPlaying = false;
 
   @Output()
-  public playTrack: EventEmitter<string> = new EventEmitter<string>();
+  public playTrack: EventEmitter<number> = new EventEmitter<number>();
 
   get duration()  {
     const time = new Date(this.track.duration);
@@ -22,4 +24,8 @@ export class TrackComponent {
   }
 
   constructor() { }
+
+  public onTrackClick(): void{
+    this.playTrack.emit(this.index);
+  }
 }
