@@ -11,7 +11,8 @@ export class TracksListComponent implements OnInit, OnDestroy{
   public trackCurrentTime = 0;
   public trackIsPlaying = false;
   public audioPlayer = new Audio();
-  public audioPlayerSub: any;
+
+  private readonly AUDIO_VOLUME = 0.2;
 
   @Input()
   public tracks: Track[];
@@ -19,6 +20,7 @@ export class TracksListComponent implements OnInit, OnDestroy{
   constructor() { }
 
   ngOnInit(): void {
+    this.audioPlayer.volume = this.AUDIO_VOLUME;
     this.audioPlayer.addEventListener('ended', this.endAudio.bind(this))
   }
 
@@ -30,7 +32,6 @@ export class TracksListComponent implements OnInit, OnDestroy{
 
   public handlePlayTrack(index: number) {
       this.trackCurrentIndex = index;
-    console.log(this.trackCurrentTime)
       this.toggleAudio();
   }
 
