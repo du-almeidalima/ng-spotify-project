@@ -62,6 +62,14 @@ $max-width-large: 80%;
   opacity: 1 !important;
 }
 
+.error-message {
+  padding: 10px;
+  border: 1px solid tomato;
+  background-color: $lightred;
+  border-radius: 5px;
+  color: tomato;
+}
+
 .btn {
   border: 1px solid $gray-900;
   outline: none;

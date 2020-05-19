@@ -4,12 +4,14 @@ import { DropdownDirective } from './directives/dropdown.directive';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RouterModule } from "@angular/router";
 import { LoadingComponent } from './components/loading/loading.component';
+import { ResponseMessageComponent } from './components/error-message/response-message.component';
 
 @NgModule({
   declarations: [
     DropdownDirective,
     PageNotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ResponseMessageComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { LoadingComponent } from './components/loading/loading.component';
   exports: [
     DropdownDirective,
     PageNotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ResponseMessageComponent
   ]
 })
 export class SharedModule {

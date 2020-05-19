@@ -6,7 +6,9 @@
 </div>
 
 <ng-template #emptyResults>
-  <h1>You haven't searched for anything yet...</h1>
+  <h1 *ngIf="message === null">You haven't searched for anything yet...</h1>
+  <app-response-message [message]="message"></app-response-message>
+
 </ng-template>
 
 <ng-template #results>

@@ -1,19 +1,24 @@
 import { SearchResult } from "../../../shared/models/search-result";
-import { Item } from "../../../shared/models/items";
+import { Album, Item } from "../../../shared/models/items";
+import { ResponseMessage } from "../../../shared/models/response-message";
 import * as MusicActions from './music.actions';
 
 export interface MusicState {
   isLoading: boolean;
   searchResult: SearchResult;
   lastSearch: string;
+  message: ResponseMessage;
   currentItem: Item;
+  searchedAlbums: Album[];
 }
 
 const initialState: MusicState = {
   isLoading: false,
   searchResult: null,
   lastSearch: null,
-  currentItem: null
+  message: null,
+  currentItem: null,
+  searchedAlbums: []
 }
 
 const musicReducer = (state: MusicState = initialState, action: MusicActions.MusicActions) => {
@@ -26,11 +31,20 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         lastSearch: action.payload
       }
 
+    case MusicActions.SEARCH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        lastSearch: null,
+        messages: action.payload
+      }
+
     case MusicActions.SET_SEARCH_RESULT:
       return {
         ...state,
         isLoading: false,
-        searchResult: action.payload
+        searchResult: action.payload,
+        messages: null
       }
 
     case MusicActions.CLEAR_SEARCH_RESULT:
@@ -51,7 +65,8 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
       return {
         ...state,
         isLoading: false,
-        currentItem: action.payload
+        currentItem: action.payload,
+        messages: null
       }
 
     default:
