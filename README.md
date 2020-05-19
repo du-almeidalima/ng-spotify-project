@@ -2,6 +2,15 @@
 
 This is my project for the Venturus code challenge. In this document I will describe my development process.
 
+The final version can be seen in this [link](https://ng-spotify-project.web.app/)
+
+## Features
+* **Redux State Management**
+* **Side Effects treatment with NgRx Effects**
+* **Automatic Login**
+* **Spotify SSO**
+* **Music Preview**
+
 ## Step 1 - Structuring the Project
 
 As a first step, since I've been gifted the screens already mocked up, I started to analyze the component, feature, state structure and replicated it in the app structure, creating the
@@ -14,6 +23,8 @@ following initial structure:
                 |-- header
             |-- modules
                 |-- music
+                    |-- search
+                    |-- albums
                     |-- feature1-routes.module.ts
                     |-- feature1.module.ts
                     |-- feature1.component.ts
@@ -57,6 +68,14 @@ search result as an object that, for now contains only Albums, but in the future
 
 ### Step 3.2 - Tracks
 
+For the tracks component, I decided to go without the Redux, because their state is localized just for them.
+
+So I created a Track List Component that will hold all the Tracks Components, and the Audio object that is responsible for 
+playing a song. Those two components communicate with Property Binding, and this make very easy to debug them.
+
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2
 * **[NgRx-Store-Logger](https://www.npmjs.com/package/ngrx-store-logger)** - 0.2.4
+* **[Firebase Hosting](https://firebase.google.com/docs/hosting)**
+
+And <b>Love</b>...
