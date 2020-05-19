@@ -61,8 +61,8 @@ export class AuthEffects {
     map(() => {
       const restoredUser  = JSON.parse(localStorage.getItem(this.LS_TOKEN));
       if (restoredUser) {
-        const { name, profileImg, tokenType, _token, _tokenExpirationDate } = restoredUser;
-        const user = new User(name, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
+        const { name, id, profileImg, tokenType, _token, _tokenExpirationDate } = restoredUser;
+        const user = new User(name, id, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
 
         // Checking if token has expired
         if (user.token) {
@@ -103,8 +103,8 @@ export class AuthEffects {
    */
   private handleAuthenticationSuccess(userData: AuthenticationResponse & UserDataResponse): AuthActions.AuthActions{
     const expirationDate = new Date().getTime() + (+userData.expires_in * 1000);
-    const {display_name, access_token, token_type, images} = userData
-    const user = new User(display_name, images[0].url, token_type, access_token, expirationDate);
+    const {display_name, id, access_token, token_type, images} = userData
+    const user = new User(display_name, id, images[0].url, token_type, access_token, expirationDate);
 
     localStorage.setItem(this.LS_TOKEN, JSON.stringify(user));
     return new AuthActions.AuthenticationSuccess({ user, redirect: true});

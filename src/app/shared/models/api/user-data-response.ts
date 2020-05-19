@@ -4,6 +4,7 @@
  */
 export interface UserDataResponse {
   display_name: string;
+  id: string;
   email: string;
   images: [
     {
