@@ -17,7 +17,7 @@ $line-height: 1px;
 }
 
 /* Medias */
-@media (max-width: $phone) {
+@media (max-width: $small) {
   .app-login-container {
     max-width: 90%;
 
@@ -27,7 +27,7 @@ $line-height: 1px;
   }
 }
 
-@media (min-width: $phone) and (max-width: $tablet) {
+@media (min-width: $small) and (max-width: $medium) {
   .app-login-container {
     max-width: 90%;
 
@@ -37,14 +37,14 @@ $line-height: 1px;
   }
 }
 
-@media (min-width: $tablet) and (max-width: $desktop) {
+@media (min-width: $medium) and (max-width: $large) {
   .app-login-container {
     margin: 10vh auto;
     max-width: 80%;
   }
 }
 
-@media (min-width: $desktop) {
+@media (min-width: $large) {
   .app-login-container {
     margin: 10vh auto;
     max-width: 45%;

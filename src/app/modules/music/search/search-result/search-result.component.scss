@@ -13,32 +13,31 @@
 
 
 /* Medias */
-@media  (min-width: $small-phone) and (max-width: $phone){
+@media  (min-width: $tiny) and (max-width: $small){
   h1 {
     font-size: 15px;
   }
 
   .app-search-result-container {
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px 50px;
   }
 }
 
-@media (min-width: $phone) and (max-width: $tablet) {
+@media (min-width: $small) and (max-width: $medium) {
   .app-search-result-container{
     grid-template-columns: repeat(3, 1fr);
     gap: 40px 50px;
   }
 }
 
-@media (min-width: $tablet) and (max-width: $desktop) {
+@media (min-width: $medium) and (max-width: $large) {
   .app-search-result-container{
     grid-template-columns: repeat(3, 1fr);
     gap: 30px 50px;
   }
 }
 
-@media (min-width: $desktop) {
+@media (min-width: $large) {
   .app-search-result-container{
     grid-template-columns: repeat(5, 1fr);
     gap: 30px 50px;

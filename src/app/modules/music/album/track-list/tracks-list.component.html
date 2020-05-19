@@ -1,0 +1,6 @@
+<div class="app-track-container">
+  <div *ngFor="let track of tracks; let i = index">
+    <app-track [track]="track" [index]="i + 1" (playTrack)="handlePlayTrack($event)"></app-track>
+  </div>
+
+</div>

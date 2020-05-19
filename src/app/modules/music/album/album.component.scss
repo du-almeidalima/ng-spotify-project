@@ -21,7 +21,7 @@
   }
 
   .app-album-tracks {
-
+    margin-top: 20px;
   }
 }
 
@@ -52,11 +52,12 @@
 
 /* Medias */
 
-@media (min-width: $phone) {
+@media (min-width: $small) {
   .app-album-container {
-    flex-flow: row nowrap;
+
     .app-album-tracks {
-      margin-left: 5vw;
+      padding-left: 5vw;
+      margin-top: 0;
       flex: 0 0 70%;
     }
 
@@ -65,16 +66,19 @@
     }
   }
 }
-@media (min-width: $tablet) {
+
+@media (min-width: $medium) {
   .app-album-container {
     flex-flow: row nowrap;
+
     .app-album-tracks {
-      margin-left: 10vw;
-      flex: 0 0 70%;
+      padding-left: 5vw;
+      margin-top: 0;
+      flex: 0 0 75%;
     }
 
     .app-album-header {
-      flex: 0 0 30%;
+      flex: 0 0 25%;
     }
   }
 }

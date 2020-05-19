@@ -22,8 +22,8 @@ a {
   display: block;
 }
 
-@media (min-width: $tablet) and (max-width: $desktop) {
+@media (min-width: $medium) and (max-width: $large) {
 }
 
-@media (min-width: $desktop) {
+@media (min-width: $large) {
 }

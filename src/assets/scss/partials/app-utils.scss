@@ -4,10 +4,15 @@
 $spacer: 1rem;
 
 /* Media Variables */
-$small-phone: 320px;
-$phone: 640px;
-$tablet: 768px;
-$desktop: 1024px;
+$tiny: 320px;
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+
+$max-width-tiny: 95%;
+$max-width-small: 90%;
+$max-width-medium: 85%;
+$max-width-large: 80%;
 
 /* Classes */
 .app-container {
@@ -158,20 +163,26 @@ $desktop: 1024px;
 }
 
 /* Medias */
-@media (min-width: $phone) and (max-width: $tablet) {
+@media (min-width: $tiny) and (max-width: $small) {
   .app-container {
-    max-width: 90%;
+    max-width: $max-width-tiny;
   }
 }
 
-@media (min-width: $tablet) and (max-width: $desktop) {
+@media (min-width: $small) and (max-width: $medium) {
   .app-container {
-    max-width: 85%;
+    max-width: $max-width-small;
   }
 }
 
-@media (min-width: $desktop) {
+@media (min-width: $medium) and (max-width: $large) {
   .app-container {
-    max-width: 80%;
+    max-width: $max-width-medium;
+  }
+}
+
+@media (min-width: $large) {
+  .app-container {
+    max-width: $max-width-large;
   }
 }

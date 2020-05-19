@@ -8,6 +8,8 @@ import {ResultItemComponent} from "./search/search-result/item/result-item.compo
 import {SearchComponent} from "./search/search.component";
 import {SharedModule} from "../../shared/shared.module";
 import {AlbumComponent} from './album/album.component';
+import {TrackComponent} from './album/track-list/track/track.component';
+import {TracksListComponent} from "./album/track-list/tracks-list.component";
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import {AlbumComponent} from './album/album.component';
     SearchResultComponent,
     SearchInputComponent,
     ResultItemComponent,
-    AlbumComponent
+    AlbumComponent,
+    TracksListComponent,
+    TrackComponent
   ],
   imports: [
     CommonModule,
