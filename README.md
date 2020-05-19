@@ -1,4 +1,4 @@
-# Venturus Challenge: Spotify Frontend Project
+# Spotify Frontend Project
 
 This is my project for the Venturus code challenge. In this document I will describe my development process.
 
