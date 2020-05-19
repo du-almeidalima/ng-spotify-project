@@ -33,6 +33,8 @@ export class AlbumComponent implements OnInit {
           this.album = item
         }
       })
+
+    window.scrollTo(0, 0);
   }
 
   public navigateBack(): void {

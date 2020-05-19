@@ -13,7 +13,6 @@ $transition-duration: 400ms;
   .app-track-title {
 
     .app-track-index {
-      display: none;
       position: absolute;
 
       &:after {
@@ -22,6 +21,7 @@ $transition-duration: 400ms;
     }
 
     .app-track-name {
+      margin-left: 40px;
       transition: color $transition-duration ease-out;
       text-overflow: ellipsis;
       white-space: nowrap;
