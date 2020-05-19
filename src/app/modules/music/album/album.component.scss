@@ -56,6 +56,7 @@
   .app-album-container {
     flex-flow: row nowrap;
     .app-album-tracks {
+      margin-left: 5vw;
       flex: 0 0 70%;
     }
 
@@ -68,11 +69,12 @@
   .app-album-container {
     flex-flow: row nowrap;
     .app-album-tracks {
-      flex: 0 0 60%;
+      margin-left: 10vw;
+      flex: 0 0 70%;
     }
 
     .app-album-header {
-      flex: 0 0 40%;
+      flex: 0 0 30%;
     }
   }
 }
