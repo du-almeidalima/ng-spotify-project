@@ -1,23 +1,25 @@
+@import "src/styles";
 
 @keyframes loading-animation {
   0% { opacity: 1 }
   50% { opacity: .5 }
   100% { opacity: 1 }
 }
+
 .animation-container{
   position: absolute;
   background-color: rgba(41, 41, 41, 0.95);
   left: -5%;
-  top: -1%;
+  top: -2vh;
   width: 110%;
+  height: 110%;
   min-height: 100vh;
-  height: 100%;
 }
 
 .loading-bars-container {
   position: fixed;
   left: 50%;
-  transform: translate(-50%, 100%);
+  transform: translate(-50%, 35%);
   width: 200px;
   height: 200px;
   display: inline-block;
@@ -63,6 +65,11 @@
     transform: translate(153px,0);
     background: #1db954;
     animation-delay: -0.8695652173913042s;
+  }
+}
+@media (min-width: $medium) {
+  .loading-bars-container {
+    transform: translate(-50%, 100%);
   }
 }
 
