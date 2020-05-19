@@ -4,6 +4,8 @@ This is my project for the Venturus code challenge. In this document I will desc
 
 The final version can be seen in this [link](https://ng-spotify-project.web.app/)
 
+The project [repository](https://github.com/du-almeidalima/ng-spotify-project)
+
 ## Features
 * **Redux State Management**
 * **Side Effects treatment with NgRx Effects**
