@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {map} from "rxjs/operators";
+import {map, take} from "rxjs/operators";
 import {Album} from "../../../shared/models/items";
 import {AlbumHistory} from "../../../shared/models/local-storage/album-history";
 import {environment as env} from "../../../../environments/environment";
@@ -23,6 +23,7 @@ export class AlbumService {
   public saveAlbumToUserHistory(album: Album): void {
     this.store.select('auth')
       .pipe(
+        take(1),
         map(authState => authState?.user?.id)
       )
       .subscribe((userId: string) => {
@@ -54,7 +55,7 @@ export class AlbumService {
    * @param userId Current logged in User
    */
   public fetchUserAlbumHistory(userId: string): AlbumHistory{
-    const albumHistory = JSON.parse(localStorage.getItem(`${env.albumHistory}`));
+    const albumHistory = JSON.parse(localStorage.getItem(env.albumHistory));
     return this.findUserAlbumHistory(albumHistory, userId);
   }
 
@@ -66,10 +67,11 @@ export class AlbumService {
    */
   private findUserAlbumHistory(albumHistory: AlbumHistory[], userId: string): AlbumHistory {
     if (albumHistory !== null) {
-      return albumHistory.find(item => item.userId === userId)
+      const userAlbum = albumHistory.find(item => item.userId === userId)
+      return userAlbum ? userAlbum : { userId, albums: []};
     }
 
-    return { userId, albums: []}
+    return { userId, albums: []};
   }
 
   /**
