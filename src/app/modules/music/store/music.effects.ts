@@ -13,6 +13,7 @@ import {AlbumSearchResponse} from "../../../shared/models/api/album-search-respo
 import {Album} from "../../../shared/models/items";
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
+import {MusicService} from "../music.service";
 
 @Injectable()
 export class MusicEffects {
@@ -23,7 +24,8 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
   constructor(
     private actions$: Actions,
     private store: Store<fromApp.AppState>,
-    private http: HttpClient
+    private http: HttpClient,
+    private musicService: MusicService
   ) {}
 
   // Effects
@@ -79,55 +81,8 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
 
   private handleAlbumSearchResult(searchResponse: AlbumSearchResponse): MusicActions.SetAlbum {
     const mappedResponse: Album = ItemMapper.mapToAlbumItem(searchResponse);
-    this.saveAlbumToUserHistory(mappedResponse);
+    this.musicService.saveAlbumToUserHistory(mappedResponse);
 
     return new MusicActions.SetAlbum(mappedResponse);
-  }
-
-  // Local Storage Cache
-  private saveAlbumToUserHistory(album: Album): void {
-    this.store.select('auth').pipe(
-      map(authState => authState?.user?.id)
-    ).subscribe((userId: string) => {
-      if (userId !== undefined) {
-        const currentAlbumHistory = this.getAlbumHistoryFromUser(userId);
-        const updatedAlbumsHistory = this.updateAlbum(currentAlbumHistory.albums, album);
-
-        console.log(updatedAlbumsHistory)
-        const albumHistoryJson = [
-          {
-            userId: userId,
-            albums: updatedAlbumsHistory
-          }
-        ]
-
-        localStorage.setItem(env.albumHistory, JSON.stringify(albumHistoryJson))
-      }
-    })
-  }
-
-  private getAlbumHistoryFromUser(userId: string): any {
-    const currentAlbumHistory = JSON.parse(localStorage.getItem(`${env.albumHistory}`))
-    if (currentAlbumHistory !== null) {
-      return currentAlbumHistory.find(user => user.userId === userId)
-    }
-
-    return { userId, albums: []}
-  }
-
-  private updateAlbum(albumsHistory: Album[], album: Album): Album[] {
-
-    let isAlreadyInHistory = albumsHistory.some(item => item.id === album.id);
-
-    if (isAlreadyInHistory) {
-      return albumsHistory
-    }
-
-    if (albumsHistory.length < 10) {
-      return [...albumsHistory, album]
-    } else {
-      const reducedAlbums = albumsHistory.slice(0 , 9);
-      return [...reducedAlbums, album]
-    }
   }
 }

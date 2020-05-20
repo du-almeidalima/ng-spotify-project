@@ -1,7 +1,6 @@
-import {User} from "../user";
 import {Album} from "../items";
 
 export interface AlbumHistory {
-  user: User,
+  userId: string,
   albums: Album[]
 }

@@ -69,6 +69,12 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         messages: null
       }
 
+    case MusicActions.SET_RECENTLY_VIEWED_ALBUMS:
+      return {
+        ...state,
+        searchedAlbums: action.payload,
+      }
+
     default:
       return state
   }
