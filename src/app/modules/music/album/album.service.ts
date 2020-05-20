@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {map} from "rxjs/operators";
-import {Album} from "../../shared/models/items";
-import {AlbumHistory} from "../../shared/models/local-storage/album-history";
-import {environment as env} from "../../../environments/environment";
-import * as fromApp from '../../store/app.reducer';
-import * as MusicActions from './store/music.actions';
+import {Album} from "../../../shared/models/items";
+import {AlbumHistory} from "../../../shared/models/local-storage/album-history";
+import {environment as env} from "../../../../environments/environment";
+import * as fromApp from '../../../store/app.reducer';
+import * as MusicActions from '../store/music.actions';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MusicService {
+export class AlbumService {
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -29,7 +29,7 @@ export class MusicService {
         const albumHistory = JSON.parse(localStorage.getItem(`${env.albumHistory}`))
 
         if (albumHistory && userId) {
-          const currentUserAlbumHistory: AlbumHistory = this.getAlbumHistoryFromUser(albumHistory, userId);
+          const currentUserAlbumHistory: AlbumHistory = this.findUserAlbumHistory(albumHistory, userId);
           const updatedUserAlbums: Album[] = this.updateAlbum(currentUserAlbumHistory.albums, album);
 
           // Updating only the current user history
@@ -51,10 +51,20 @@ export class MusicService {
   /**
    * Will get only the user logged in album history.
    *
+   * @param userId Current logged in User
+   */
+  public fetchUserAlbumHistory(userId: string): AlbumHistory{
+    const albumHistory = JSON.parse(localStorage.getItem(`${env.albumHistory}`));
+    return this.findUserAlbumHistory(albumHistory, userId);
+  }
+
+  /**
+   * Will return only the user logged from an {@link AlbumHistory} array.
+   *
    * @param albumHistory Current Album History
    * @param userId Current logged in User
    */
-  private getAlbumHistoryFromUser(albumHistory: AlbumHistory[], userId: string): any {
+  private findUserAlbumHistory(albumHistory: AlbumHistory[], userId: string): AlbumHistory {
     if (albumHistory !== null) {
       return albumHistory.find(item => item.userId === userId)
     }

@@ -18,7 +18,7 @@ export class AlbumComponent implements OnInit {
   private storeSub: Subscription;
 
   get artistsNames(): string {
-    return this.album.artists.map(a => a.name).join();
+    return this.album.artists.map(a => a.name).join(', ');
   }
 
   constructor(private store: Store<fromApp.AppState>, private location: Location) { }

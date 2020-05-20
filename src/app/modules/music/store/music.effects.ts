@@ -13,7 +13,7 @@ import {AlbumSearchResponse} from "../../../shared/models/api/album-search-respo
 import {Album} from "../../../shared/models/items";
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
-import {MusicService} from "../music.service";
+import {AlbumService} from "../album/album.service";
 
 @Injectable()
 export class MusicEffects {
@@ -25,7 +25,7 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
     private actions$: Actions,
     private store: Store<fromApp.AppState>,
     private http: HttpClient,
-    private musicService: MusicService
+    private musicService: AlbumService
   ) {}
 
   // Effects
