@@ -59,7 +59,6 @@ export class AuthComponent implements OnInit{
   }
 
   private handleErrorResponse(error: string) {
-    console.log(error)
     switch (error) {
       case 'access_denied':
         this.errorResponse = {
