@@ -75,6 +75,15 @@ For the tracks component, I decided to go without the Redux, because their state
 So I created a Track List Component that will hold all the Tracks Components, and the Audio object that is responsible for 
 playing a song. Those two components communicate with Property Binding, and this make very easy to debug them.
 
+### Step 3.3 - Storing the Albums in Local Storage
+
+In order to give the User a nice experience, I stored his 10 most recently viewed albums in LocalStorage, this way, when the User
+is on Search screen and there's no search, he/she can se its previous searches.
+
+To implement this I created a Service that would handle those get/set LS operations, every user has its own records, so multiple users
+can share the same device. Also, the fetch operation is made only when the app is loaded, after that it's sync with the state and only updates
+the LocalStore.
+
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2
 * **[NgRx-Store-Logger](https://www.npmjs.com/package/ngrx-store-logger)** - 0.2.4
