@@ -5,9 +5,9 @@ import {ResponseMessage} from "../../models/response-message";
 @Component({
   selector: 'app-response-message',
   template: `
-    <div [ngClass]="styleClass">
-      <h3>Something went wrong</h3>
-      <p>{{message}}</p>
+    <div [ngClass]="[styleClass, 'mtop-5']">
+      <ng-content></ng-content>
+      <p>{{message.message}}</p>
     </div>
   `,
   styles: []

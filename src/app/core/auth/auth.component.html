@@ -5,4 +5,7 @@
           class="btn btn-half-block btn-large btn-rounder primary text-center center-content pointer mtop-5">
     Login
   </button>
+  <app-response-message *ngIf="errorResponse !== null" [message]="errorResponse">
+    <h3>To access this app you must grant the permissions</h3>
+  </app-response-message>
 </div>

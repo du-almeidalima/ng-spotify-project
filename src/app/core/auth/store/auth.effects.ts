@@ -16,7 +16,6 @@ import * as AuthActions from "./auth.actions";
 @Injectable()
 export class AuthEffects {
   private readonly GET_CURRENT_USER = env.baseUrl + env.getCurrentUser;
-  private readonly LS_TOKEN = 'UserToken';
 
   constructor (
     private actions$: Actions,
@@ -59,7 +58,7 @@ export class AuthEffects {
   autoLogin = this.actions$.pipe(
     ofType(AuthActions.AUTO_LOGIN),
     map(() => {
-      const restoredUser  = JSON.parse(localStorage.getItem(this.LS_TOKEN));
+      const restoredUser  = JSON.parse(localStorage.getItem(env.userToken));
       if (restoredUser) {
         const { name, id, profileImg, tokenType, _token, _tokenExpirationDate } = restoredUser;
         const user = new User(name, id, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
@@ -87,7 +86,7 @@ export class AuthEffects {
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {
-      localStorage.removeItem(this.LS_TOKEN)
+      localStorage.removeItem(env.userToken)
       this.authService.clearLogoutTimer();
       this.router.navigate(['/login'])
     })
@@ -106,7 +105,7 @@ export class AuthEffects {
     const {display_name, id, access_token, token_type, images} = userData
     const user = new User(display_name, id, images[0].url, token_type, access_token, expirationDate);
 
-    localStorage.setItem(this.LS_TOKEN, JSON.stringify(user));
+    localStorage.setItem(env.userToken, JSON.stringify(user));
     return new AuthActions.AuthenticationSuccess({ user, redirect: true});
   }
 }

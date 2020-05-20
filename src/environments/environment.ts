@@ -6,15 +6,20 @@ export const environment = {
   production: false,
   // Identity Provider
   identityProvider: 'https://accounts.spotify.com/authorize',
+  logout: 'https://www.spotify.com/logout/',
   clientId: '2a6ab7a7882b487687d3de8450036199',
   scope: 'user-read-private%20user-read-email',
+  showDialog: 'true',
   callback: 'http://localhost:4200/login',
   // APIs
   baseUrl: 'https://api.spotify.com/v1',
   getCurrentUser: '/me',
   search: '/search',
   searchType: 'album',
-  albums: '/albums'
+  albums: '/albums',
+  // Local Storage Keys
+  userToken: 'userToken',
+  albumHistory: 'albumHistory'
 };
 
 /*

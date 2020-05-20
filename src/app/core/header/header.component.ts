@@ -33,6 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public onLogoutClick(): void {
-    this.store.dispatch(new AuthActions.LogOut())
+    this.store.dispatch(new AuthActions.LogOut());
   }
 }
