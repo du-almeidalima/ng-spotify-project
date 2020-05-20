@@ -4,7 +4,7 @@ import {Subscription} from "rxjs";
 import {SearchResult} from "../../../../shared/models/search-result";
 import {SearchResultItem} from "../../../../shared/models/search-result-item";
 import {ItemMapper} from "../../../../shared/utils/item-mapper";
-import {Item} from "../../../../shared/models/items";
+import {Album, Item} from "../../../../shared/models/items";
 import {ResponseMessage} from "../../../../shared/models/response-message";
 import * as fromApp from '../../../../store/app.reducer';
 
@@ -16,6 +16,7 @@ import * as fromApp from '../../../../store/app.reducer';
 export class SearchResultComponent implements OnInit, OnDestroy{
 
   public searchResult: SearchResult;
+  public searchedAlbums: Album[];
   public searchTerm: string;
   public isLoading = false;
   public message: ResponseMessage;
@@ -30,6 +31,7 @@ export class SearchResultComponent implements OnInit, OnDestroy{
         this.isLoading = musicState.isLoading;
         this.searchTerm = musicState.lastSearch;
         this.message = musicState.message;
+        this.searchedAlbums = musicState.searchedAlbums;
       });
   }
 

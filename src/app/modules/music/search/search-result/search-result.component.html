@@ -1,21 +1,34 @@
 <div class="mtop-5 relative">
   <app-loading *ngIf="isLoading"></app-loading>
   <div class="app-search-result-wrapper">
-    <ng-container *ngIf="searchResult != null; then results; else emptyResults"></ng-container>
+    <!-- Display Results or Default Components --->
+    <ng-container *ngIf="searchResult != null; then results; else noSearch"></ng-container>
   </div>
 </div>
-
-<ng-template #emptyResults>
-  <h1 *ngIf="message === null">You haven't searched for anything yet...</h1>
-  <app-response-message *ngIf="message" [message]="message">
-    <h3>Something went wrong</h3>
-  </app-response-message>
-
-</ng-template>
 
 <ng-template #results>
   <h3 class="text-white">Results for "{{searchTerm}}"</h3>
   <div class="app-search-result-container">
     <app-result-item [item]="getResultItem(item)" *ngFor="let item of searchResult.albums"></app-result-item>
   </div>
+</ng-template>
+
+<ng-template #noSearch>
+  <ng-container *ngIf="searchedAlbums.length > 0; then albumHistory; else noAlbumHistory"></ng-container>
+
+  <!-- When the user doesn't have any Album History search -->
+  <ng-template #noAlbumHistory>
+    <h3 *ngIf="message === null">You haven't searched for anything yet...</h3>
+    <app-response-message *ngIf="message" [message]="message">
+      <h3>Something went wrong</h3>
+    </app-response-message>
+  </ng-template>
+
+  <!-- When the user have searched for some Albums already -->
+  <ng-template #albumHistory>
+    <h3>Recently searched albums...</h3>
+    <div class="app-search-result-container">
+      <app-result-item [item]="getResultItem(album)" *ngFor="let album of searchedAlbums"></app-result-item>
+    </div>
+  </ng-template>
 </ng-template>
