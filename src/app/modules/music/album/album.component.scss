@@ -26,7 +26,7 @@
 }
 
 .app-album-back-link{
-  display: block;
+  display: inline-block;
   margin-top: 20px;
   text-decoration: none;
   font-weight: bold;
@@ -39,6 +39,7 @@
     position: relative;
     top: 0.39em;
     left: 0.25em;
+    transition: margin-right 200ms ease-out;
     border-style: solid;
     border-width: 0.25em 0.25em 0 0;
     border-radius: 2px;
@@ -47,6 +48,12 @@
     margin-right: 5px;
     transform: rotate(-135deg);
     vertical-align: top;
+  }
+
+  &:hover, &:focus {
+    &::before {
+      margin-right: 15px;
+    }
   }
 }
 
