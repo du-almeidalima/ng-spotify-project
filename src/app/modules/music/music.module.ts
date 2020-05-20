@@ -10,6 +10,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {AlbumComponent} from './album/album.component';
 import {TrackComponent} from './album/track-list/track/track.component';
 import {TracksListComponent} from "./album/track-list/tracks-list.component";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {TracksListComponent} from "./album/track-list/tracks-list.component";
   imports: [
     CommonModule,
     MusicRoutesModule,
+    InfiniteScrollModule,
     SharedModule
   ]
 })

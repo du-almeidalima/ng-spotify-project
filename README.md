@@ -87,6 +87,7 @@ the LocalStore.
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2
 * **[NgRx-Store-Logger](https://www.npmjs.com/package/ngrx-store-logger)** - 0.2.4
+* **[Ngx-infinite-scroll](https://github.com/orizens/ngx-infinite-scroll)** - 9.0.0
 * **[Firebase Hosting](https://firebase.google.com/docs/hosting)**
 
 And <b>Love</b>...

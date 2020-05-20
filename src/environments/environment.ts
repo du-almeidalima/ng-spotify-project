@@ -8,6 +8,7 @@ export const environment = {
   callback: 'http://localhost:4200/login',
   // APIs
   baseUrl: 'https://api.spotify.com/v1',
+  searchOffset: 20,
   getCurrentUser: '/me',
   search: '/search',
   searchType: 'album',

@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Store} from "@ngrx/store";
 import {Actions, Effect, ofType} from "@ngrx/effects";
 import {of} from "rxjs";
-import {catchError, map, switchMap} from "rxjs/operators";
+import {catchError, map, switchMap, withLatestFrom} from "rxjs/operators";
 import {environment as env} from "../../../../environments/environment";
 import {SearchResponse} from "../../../shared/models/api/search-response";
 import {SearchResult} from "../../../shared/models/search-result";
@@ -43,7 +43,7 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
         }
       ).pipe(
         map((searchResponse: SearchResponse) => {
-          return this.handleSearchResult(searchResponse)
+          return this.handleSearchResult(searchResponse, false)
         }),
         catchError((err: HttpErrorResponse) => {
           return of(this.handleSearchFail(err));
@@ -69,10 +69,37 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
     })
   )
 
+  @Effect()
+  startAlbumScrollSearch = this.actions$.pipe(
+    ofType(MusicActions.START_ALBUM_SCROLL_SEARCH),
+    withLatestFrom(this.store.select('music')),
+    switchMap(([action, musicState]) => {
+      let params = new HttpParams().set('type', this.SEARCH_TYPES);
+      params = params.set('q', musicState.lastSearch);
+      params = params.set('offset', musicState.albumSearchOffset.toString());
+
+      return this.http.get<SearchResponse>(
+        this.SEARCH,
+      {
+        params: params
+      })
+      .pipe(
+        map((searchResponse: SearchResponse) => {
+          return this.handleSearchResult(searchResponse, true)
+        }),
+        catchError((err: HttpErrorResponse) => {
+          return of(this.handleSearchFail(err));
+        })
+      )
+    })
+  )
+
   // Handlers
-  private handleSearchResult(searchResponse: SearchResponse): MusicActions.MusicActions {
+  private handleSearchResult(searchResponse: SearchResponse, append: boolean): MusicActions.MusicActions {
     const mappedResponse: SearchResult = ItemMapper.mapToSearchResult(searchResponse);
-    return new MusicActions.SetSearchResult(mappedResponse);
+    return append
+      ? new MusicActions.AppendAlbumsToSearchResult(mappedResponse.albums)
+      : new MusicActions.SetSearchResult(mappedResponse)
   }
 
   private handleSearchFail(errorResponse: HttpErrorResponse): MusicActions.MusicActions {
