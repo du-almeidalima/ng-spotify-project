@@ -3,7 +3,9 @@
 $img-size: 30px;
 
 .app-header-container {
-  padding: 10px 20px;
+  width: $max-width-tiny;
+  margin: 0 auto;
+  padding: 10px 0;
 
   .app-header-user-profile-thumbnail {
     border-radius: 50%;
@@ -54,5 +56,20 @@ $img-size: 30px;
     font-weight: bold;
     vertical-align: super;
     margin-left: 20px;
+  }
+}
+
+
+/* Medias */
+
+@media (min-width: $small) and (max-width: $medium) {
+  .app-header-container {
+    max-width: $max-width-small;
+  }
+}
+
+@media (min-width: $medium) and (max-width: $large) {
+  .app-header-container {
+    max-width: $max-width-medium;
   }
 }

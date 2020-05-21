@@ -102,8 +102,15 @@ export class AuthEffects {
    */
   private handleAuthenticationSuccess(userData: AuthenticationResponse & UserDataResponse): AuthActions.AuthActions{
     const expirationDate = new Date().getTime() + (+userData.expires_in * 1000);
-    const {display_name, id, access_token, token_type, images} = userData
-    const user = new User(display_name, id, images[0].url, token_type, access_token, expirationDate);
+    const { display_name, id, access_token, token_type, images } = userData;
+
+    const user = new User(
+      display_name,
+      id,
+      images[0]?.url || env.profilePlaceholder,
+      token_type,
+      access_token,
+      expirationDate );
 
     localStorage.setItem(env.userToken, JSON.stringify(user));
     return new AuthActions.AuthenticationSuccess({ user, redirect: true});

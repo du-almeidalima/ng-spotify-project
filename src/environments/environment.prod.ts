@@ -6,6 +6,7 @@ export const environment = {
   scope: 'user-read-private%20user-read-email',
   showDialog: 'true',
   callback: 'https://ng-spotify-project.web.app/login',
+  profilePlaceholder: 'https://www.lococrossfit.com/wp-content/uploads/2019/02/user-icon-300x300.png',
   // APIs
   baseUrl: 'https://api.spotify.com/v1',
   searchOffset: 20,
