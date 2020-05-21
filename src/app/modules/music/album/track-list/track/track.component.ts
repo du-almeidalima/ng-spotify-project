@@ -26,6 +26,8 @@ export class TrackComponent {
   constructor() { }
 
   public onTrackClick(): void{
-    this.playTrack.emit(this.index);
+    if (this.track.previewUrl) {
+      this.playTrack.emit(this.index);
+    }
   }
 }

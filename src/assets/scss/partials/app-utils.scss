@@ -57,6 +57,10 @@ $max-width-large: 80%;
   cursor: pointer;
 }
 
+.block {
+  cursor: not-allowed;
+}
+
 .show {
   visibility: visible !important;
   opacity: 1 !important;

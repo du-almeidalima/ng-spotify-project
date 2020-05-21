@@ -1,7 +1,19 @@
-<div class="app-track pointer" [ngClass]="isPlaying ? 'play' : ''" (click)="onTrackClick()">
+<div class="app-track"
+     [ngClass]="{
+      'play': isPlaying,
+      'block': !track.previewUrl,
+      'pointer': track.previewUrl
+     }"
+     (click)="onTrackClick()">
   <div class="app-track-title">
     <span class="app-track-index">{{index + 1}}</span>
-    <div class="app-track-name text-primary">{{track.name}}</div>
+    <div class="app-track-name"
+         [ngClass]="{
+          'text-primary': track.previewUrl,
+          'text-secondary': !track.previewUrl
+         }">
+      {{track.name}}
+    </div>
   </div>
   <span class="app-track-duration">{{duration}}</span>
 </div>
