@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {SearchResultItem} from "../../../../../shared/models/search-result-item";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ItemType} from "../../../../../shared/models/enums/item-type";
 
 @Component({
   selector: 'app-result-item',
@@ -14,6 +15,8 @@ export class ResultItemComponent {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   public onAlbumClick(): void {
-    this.router.navigate(['../../album', this.item.id], { relativeTo: this.route })
+    if (this.item.type === ItemType.album ) {
+      this.router.navigate(['../../album', this.item.id], { relativeTo: this.route })
+    }
   }
 }

@@ -8,12 +8,12 @@ import {environment as env} from "../../../../environments/environment";
 import {SearchResponse} from "../../../shared/models/api/search-response";
 import {SearchResult} from "../../../shared/models/search-result";
 import {ItemMapper} from "../../../shared/utils/item-mapper";
+import {AlbumService} from "../album/album.service";
 import {MessageSeverity} from "../../../shared/models/enums/message-severity";
 import {AlbumSearchResponse} from "../../../shared/models/api/album-search-response";
 import {Album} from "../../../shared/models/items";
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
-import {AlbumService} from "../album/album.service";
 
 @Injectable()
 export class MusicEffects {
@@ -25,7 +25,7 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
     private actions$: Actions,
     private store: Store<fromApp.AppState>,
     private http: HttpClient,
-    private musicService: AlbumService
+    private albumService: AlbumService
   ) {}
 
   // Effects
@@ -108,7 +108,7 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
 
   private handleAlbumSearchResult(searchResponse: AlbumSearchResponse): MusicActions.SetAlbum {
     const mappedResponse: Album = ItemMapper.mapToAlbumItem(searchResponse);
-    this.musicService.saveAlbumToUserHistory(mappedResponse);
+    this.albumService.saveAlbumToUserHistory(mappedResponse);
 
     return new MusicActions.SetAlbum(mappedResponse);
   }

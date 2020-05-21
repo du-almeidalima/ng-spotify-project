@@ -14,7 +14,7 @@ const MUSIC_ROUTES: Routes = [
         { path: '', redirectTo: 'search/', pathMatch: 'full' },
         { path: 'search', redirectTo: 'search/', pathMatch: 'full'},
         { path: 'search/:term', component: SearchComponent, resolve: [AlbumHistoryResolverService, SearchResolverService]},
-        { path: 'album', redirectTo: 'album/', pathMatch: 'full'},
+        { path: 'album', redirectTo: 'search/', pathMatch: 'full'},
         { path: 'album/:albumId', component: AlbumComponent, resolve: [AlbumResolverService]}
       ]
   }

@@ -3,6 +3,7 @@ import {Store} from "@ngrx/store";
 import {map, take} from "rxjs/operators";
 import {Album} from "../../../shared/models/items";
 import {AlbumHistory} from "../../../shared/models/local-storage/album-history";
+import {AlbumsCacheLocalStorage} from "../../../shared/models/local-storage/albums-cache-local-storage";
 import {environment as env} from "../../../../environments/environment";
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
@@ -13,6 +14,11 @@ import * as MusicActions from '../store/music.actions';
 export class AlbumService {
 
   constructor(private store: Store<fromApp.AppState>) { }
+
+  public getAlbumFromCache(id: string): Album {
+    const albumCache: AlbumsCacheLocalStorage = this.getAlbumsHistory();
+    return albumCache?.albums.find(item => item.id === id);
+  }
 
   /**
    * Public method for updating the User recently viewed albums in Local Storage. At the end
@@ -27,7 +33,7 @@ export class AlbumService {
         map(authState => authState?.user?.id)
       )
       .subscribe((userId: string) => {
-        const albumCache = JSON.parse(localStorage.getItem(`${env.albumsCache}`));
+        const albumCache: AlbumsCacheLocalStorage = this.getAlbumsHistory();
         const albumHistory = albumCache?.albumHistory;
 
         if (albumHistory && userId) {
@@ -47,7 +53,7 @@ export class AlbumService {
 
         } else {
 
-          const newAlbumCache = {
+          const newAlbumCache: AlbumsCacheLocalStorage = {
             albumHistory: [{ userId: userId, albums: [album]}],
             albums: this.updateAlbumCache(albumCache?.albums, album)
           };
@@ -64,7 +70,7 @@ export class AlbumService {
    * @param userId Current logged in User
    */
   public fetchUserAlbumHistory(userId: string): AlbumHistory{
-    const albumCache = JSON.parse(localStorage.getItem(env.albumsCache));
+    const albumCache: AlbumsCacheLocalStorage = this.getAlbumsHistory();
     return this.findUserAlbumHistory(albumCache?.albumHistory, userId);
   }
 
@@ -91,15 +97,15 @@ export class AlbumService {
    */
   private updateAlbumHistory(currentAlbumHistory: Album[], album: Album): Album[] {
 
-    if (this.shouldUpdate(currentAlbumHistory, album)) {
-      return currentAlbumHistory
+    if (this.isAlreadyInCache(currentAlbumHistory, album)) {
+      return currentAlbumHistory;
     }
 
-    if (currentAlbumHistory.length < 10) {
-      return [album, ...currentAlbumHistory]
-    } else {
-      const reducedAlbumHistory = currentAlbumHistory.slice(1 , 10);
+    if (currentAlbumHistory.length >= 10) {
+      const reducedAlbumHistory = currentAlbumHistory.slice(0 , 9);
       return [album, ...reducedAlbumHistory]
+    } else {
+      return [album, ...currentAlbumHistory]
     }
   }
 
@@ -112,14 +118,14 @@ export class AlbumService {
   private updateAlbumCache(currentAlbumCache: Album[], album: Album): Album[] {
     const albums = currentAlbumCache || [];
 
-    if (this.shouldUpdate(currentAlbumCache, album)) {
-
+    if (this.isAlreadyInCache(currentAlbumCache, album)) {
+      return albums;
     }
 
     let updatedAlbums;
 
     if (albums.length >= 10) {
-      const reducedAlbums = albums.slice(1 , 10);
+      const reducedAlbums = albums.slice(0 , 9);
       updatedAlbums = [album, ...reducedAlbums];
     } else {
       updatedAlbums = [album, ...albums]
@@ -128,7 +134,12 @@ export class AlbumService {
     return updatedAlbums;
   }
 
-  private shouldUpdate(albumsArr: Album[], album: Album): boolean {
-    return !albumsArr.some(item => item.id === album.id)
+  // Helpers
+  private isAlreadyInCache(albumsArr: Album[], album: Album): boolean {
+    return albumsArr?.some(item => item.id === album.id)
+  }
+
+  private getAlbumsHistory(): AlbumsCacheLocalStorage{
+    return JSON.parse(localStorage.getItem(env.albumsCache));
   }
 }

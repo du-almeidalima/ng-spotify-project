@@ -14,6 +14,7 @@ export const environment = {
   search: '/search',
   searchType: 'album',
   albums: '/albums',
+  albumCoverPlaceholder: 'https://www.streamplay.media/themes/streamplay/assets/images/artwork.cover.jpg',
   // Local Storage Keys
   userToken: 'userToken',
   albumsCache: 'albumsCache'

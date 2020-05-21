@@ -5,6 +5,7 @@ import {Location} from "@angular/common";
 import {Subscription} from "rxjs";
 import {ItemType} from "../../../shared/models/enums/item-type";
 import {Album} from "../../../shared/models/items";
+import {environment as env} from "../../../../environments/environment";
 import * as fromApp from '../../../store/app.reducer';
 
 @Component({
@@ -32,6 +33,7 @@ export class AlbumComponent implements OnInit {
       .subscribe(musicState => {
         if (musicState.currentItem.type === ItemType.album) {
           this.album = musicState.currentItem;
+          this.album?.images[0] ? this.album.images : env.albumCoverPlaceholder
         }
 
         this.lastSearch = musicState.lastSearch;
@@ -41,7 +43,6 @@ export class AlbumComponent implements OnInit {
   }
 
   public navigateBack(): void {
-    console.log(this.lastSearch)
     if (this.lastSearch !== null) {
       this.location.back();
     } else {

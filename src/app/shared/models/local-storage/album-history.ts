@@ -1,6 +1,6 @@
-import {Album} from "../items";
+import { Album } from "../items";
 
 export interface AlbumHistory {
-  userId: string,
-  albums: Album[]
+  userId: string;
+  albums: Album[];
 }

@@ -10,7 +10,7 @@ export class ItemMapper {
     switch (item.type) {
       case ItemType.album:
         const subTitle = item.artists.map(a => a.name).join();
-        return { id: item.id, img: item.images[0], title: item.name, subTitle }
+        return { id: item.id, type: item.type, img: item.images[0], title: item.name, subTitle }
     }
   }
 
