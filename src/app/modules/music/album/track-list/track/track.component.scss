@@ -1,6 +1,10 @@
 @import "src/styles";
 
 $margin-left: 40px;
+$track-title-width-tiny: 260px;
+$track-title-width-small: 330px;
+$track-title-width-medium: 400px;
+$track-title-width-large: 680px;
 $transition-duration: 400ms;
 
 .app-track {
@@ -25,7 +29,7 @@ $transition-duration: 400ms;
       transition: color $transition-duration ease-out;
       text-overflow: ellipsis;
       white-space: nowrap;
-      width: $tiny - $margin-left;
+      max-width: $track-title-width-tiny;
       overflow: hidden;
     }
   }
@@ -45,7 +49,7 @@ $transition-duration: 400ms;
 
       .app-track-name {
         margin-left: $margin-left;
-        width: 350px;
+        max-width: $track-title-width-small;
       }
     }
 
@@ -55,7 +59,7 @@ $transition-duration: 400ms;
   }
 }
 
-@media (min-width: $medium){
+@media (min-width: $medium) and (max-width: $large){
   .app-track {
     flex-flow: row nowrap;
     .app-track-title {
@@ -65,10 +69,24 @@ $transition-duration: 400ms;
 
       .app-track-name {
         margin-left: $margin-left;
-        width: 350px;
+        max-width: $track-title-width-medium;
       }
     }
 
+    .app-track-duration {
+      display: inline-block;
+    }
+  }
+}
+
+@media (min-width: $large){
+  .app-track {
+    .app-track-title {
+      .app-track-name {
+        margin-left: $margin-left;
+        max-width: $track-title-width-large;
+      }
+    }
     .app-track-duration {
       display: inline-block;
     }
