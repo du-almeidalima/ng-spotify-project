@@ -29,7 +29,7 @@ export class AlbumHistoryResolverService implements Resolve<void>{
       )
       .subscribe( ({authState, musicState}) => {
         if (musicState.searchedAlbums.length === 0) {
-          const cachedAlbumHistory: AlbumHistory = this.albumService.fetchUserAlbumHistory(authState.user.id);
+          const cachedAlbumHistory: AlbumHistory = this.albumService.getUserAlbumHistory(authState.user.id);
           this.store.dispatch(new MusicActions.SetRecentlyViewedAlbums(cachedAlbumHistory.albums))
         }
       })

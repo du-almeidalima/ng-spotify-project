@@ -1,10 +1,12 @@
 <div class="app-track"
-     [ngClass]="{
-      'play': isPlaying,
-      'block': !track.previewUrl,
-      'pointer': track.previewUrl
-     }"
-     (click)="onTrackClick()">
+   [ngClass]="{
+    'play': isPlaying,
+    'block': !track.previewUrl,
+    'pointer': track.previewUrl
+   }"
+   (click)="onTrackClick()"
+  [title]="!track.previewUrl ? 'Sorry, but Spotify don\'t want you to list to this track :/' : ''"
+>
   <div class="app-track-title">
     <span class="app-track-index">{{index + 1}}</span>
     <div class="app-track-name"

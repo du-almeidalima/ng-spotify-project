@@ -17,7 +17,11 @@ export class AlbumService {
 
   public getAlbumFromCache(id: string): Album {
     const albumCache: AlbumsCacheLocalStorage = this.getAlbumsHistory();
-    return albumCache?.albums.find(item => item.id === id);
+    if (albumCache?.albums) {
+      return albumCache?.albums.find(item => item.id === id);
+    }
+
+    return null
   }
 
   /**
@@ -69,7 +73,7 @@ export class AlbumService {
    *
    * @param userId Current logged in User
    */
-  public fetchUserAlbumHistory(userId: string): AlbumHistory{
+  public getUserAlbumHistory(userId: string): AlbumHistory{
     const albumCache: AlbumsCacheLocalStorage = this.getAlbumsHistory();
     return this.findUserAlbumHistory(albumCache?.albumHistory, userId);
   }

@@ -84,6 +84,17 @@ To implement this I created a Service that would handle those get/set LS operati
 can share the same device. Also, the fetch operation is made only when the app is loaded, after that it's sync with the state and only updates
 the LocalStore.
 
+### Step 3.4 - Retrieving Albums from Cache
+
+The app will store the last 10 viewed albums in Local Storage cache under the property ``albumsCache.albums``. So, whenever the user tries
+to se an album, the AlbumResolveService will ask the AlbumService if this album is cached, if it's a action will be fired setting this Album
+but without any request! If the Album is not in cache, then the normal flow of making an HTTP request will be taken.
+
+## Step 4 - Tests
+
+Due to lack of my time, I could only test the AlbumService which is responsible for making Cache operations.
+
+
 ## Built With
 * **[NgRx](https://ngrx.io/)** - 9.1.2
 * **[NgRx-Store-Logger](https://www.npmjs.com/package/ngrx-store-logger)** - 0.2.4

@@ -70,9 +70,3 @@ $img-size: 30px;
     max-width: $max-width-small;
   }
 }
-
-@media (min-width: $medium) and (max-width: $large) {
-  .app-header-container {
-    max-width: $max-width-medium;
-  }
-}

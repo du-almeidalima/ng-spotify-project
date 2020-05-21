@@ -14,6 +14,7 @@ import * as MusicActions from '../../store/music.actions';
 export class SearchInputComponent implements AfterViewInit, OnDestroy {
   private searchTimeoutId: any;
   private storeSub: Subscription;
+
   @ViewChild('searchInput')
   public searchInput: ElementRef;
 
