@@ -40,7 +40,7 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  public onType(e) {
+  public onType(e): void {
     clearTimeout(this.searchTimeoutId);
     const searchTerm = e.target.value;
     // Updating the URL based on Search term

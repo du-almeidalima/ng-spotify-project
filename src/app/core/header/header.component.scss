@@ -3,8 +3,11 @@
 $img-size: 30px;
 
 .app-header-container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   width: $max-width-tiny;
-  margin: 0 auto;
+  margin-bottom: 20px;
   padding: 10px 0;
 
   .app-header-user-profile-thumbnail {

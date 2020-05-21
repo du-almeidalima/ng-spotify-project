@@ -16,7 +16,7 @@ export const environment = {
   albums: '/albums',
   // Local Storage Keys
   userToken: 'userToken',
-  albumHistory: 'albumHistory'
+  albumsCache: 'albumsCache'
 };
 
 /*

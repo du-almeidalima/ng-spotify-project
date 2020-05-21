@@ -25,6 +25,7 @@ $height: 1.5em;
       transform: translate(-.20em, -3.5rem) scale(0.75);
       transform-origin: left;
     }
+
     &:not(:placeholder-shown) + .app-search-label{
       transform: translate(-.20em, -3.5rem) scale(0.75);
       transform-origin: left;
@@ -50,10 +51,10 @@ $height: 1.5em;
     width: 0;
     height: 2px;
 
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
+    -webkit-transition: all 400ms;
+    -o-transition: all 400ms;
+    -moz-transition: all 400ms;
+    transition: all 400ms;
     background: -webkit-linear-gradient($green);
     background: -o-linear-gradient($green);
     background: -moz-linear-gradient($green);

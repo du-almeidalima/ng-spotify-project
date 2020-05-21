@@ -27,24 +27,33 @@ export class AlbumService {
         map(authState => authState?.user?.id)
       )
       .subscribe((userId: string) => {
-        const albumHistory = JSON.parse(localStorage.getItem(`${env.albumHistory}`))
+        const albumCache = JSON.parse(localStorage.getItem(`${env.albumsCache}`));
+        const albumHistory = albumCache?.albumHistory;
 
         if (albumHistory && userId) {
           const currentUserAlbumHistory: AlbumHistory = this.findUserAlbumHistory(albumHistory, userId);
-          const updatedUserAlbums: Album[] = this.updateAlbum(currentUserAlbumHistory.albums, album);
+          const updatedUserAlbums: Album[] = this.updateAlbumHistory(currentUserAlbumHistory.albums, album);
 
           // Updating only the current user history
-          const updatedAlbumHistory = albumHistory.filter( item => item.userId !== userId)
-          updatedAlbumHistory.push({userId, albums: updatedUserAlbums})
+          const updatedAlbumHistory = albumHistory.filter( item => item.userId !== userId);
+          updatedAlbumHistory.push({userId, albums: updatedUserAlbums});
 
-          localStorage.setItem(env.albumHistory, JSON.stringify(updatedAlbumHistory))
-          this.store.dispatch(new MusicActions.SetRecentlyViewedAlbums(updatedUserAlbums))
+          // Updating the whole LS object
+          albumCache.albumHistory = updatedAlbumHistory;
+          albumCache.albums = this.updateAlbumCache(albumCache?.albums, album);
+
+          localStorage.setItem(env.albumsCache, JSON.stringify(albumCache));
+          this.store.dispatch(new MusicActions.SetRecentlyViewedAlbums(updatedUserAlbums));
 
         } else {
-          const newLocalStorageEntry = [{ userId: userId, albums: [album]}]
 
-          localStorage.setItem(env.albumHistory, JSON.stringify(newLocalStorageEntry))
-          this.store.dispatch(new MusicActions.SetRecentlyViewedAlbums([album]))
+          const newAlbumCache = {
+            albumHistory: [{ userId: userId, albums: [album]}],
+            albums: this.updateAlbumCache(albumCache?.albums, album)
+          };
+
+          localStorage.setItem(env.albumsCache, JSON.stringify(newAlbumCache));
+          this.store.dispatch(new MusicActions.SetRecentlyViewedAlbums([album]));
         }
       })
   }
@@ -55,8 +64,8 @@ export class AlbumService {
    * @param userId Current logged in User
    */
   public fetchUserAlbumHistory(userId: string): AlbumHistory{
-    const albumHistory = JSON.parse(localStorage.getItem(env.albumHistory));
-    return this.findUserAlbumHistory(albumHistory, userId);
+    const albumCache = JSON.parse(localStorage.getItem(env.albumsCache));
+    return this.findUserAlbumHistory(albumCache?.albumHistory, userId);
   }
 
   /**
@@ -66,7 +75,7 @@ export class AlbumService {
    * @param userId Current logged in User
    */
   private findUserAlbumHistory(albumHistory: AlbumHistory[], userId: string): AlbumHistory {
-    if (albumHistory !== null) {
+    if (albumHistory) {
       const userAlbum = albumHistory.find(item => item.userId === userId)
       return userAlbum ? userAlbum : { userId, albums: []};
     }
@@ -75,23 +84,51 @@ export class AlbumService {
   }
 
   /**
-   * Will add a Album in the user's albumHistory Local Storage, if it's not already in there.
+   * Will add a Album in the user's albumsCache Local Storage, if it's not already in there.
    *
-   * @param currentAlbums The user current recent viewed albums stored in LS
+   * @param currentAlbumHistory The user current recent viewed albums stored in LS
    * @param album The album being added
    */
-  private updateAlbum(currentAlbums: Album[], album: Album): Album[] {
+  private updateAlbumHistory(currentAlbumHistory: Album[], album: Album): Album[] {
 
-    let isAlreadyInHistory = currentAlbums.some(item => item.id === album.id);
-    if (isAlreadyInHistory) {
-      return currentAlbums
+    if (this.shouldUpdate(currentAlbumHistory, album)) {
+      return currentAlbumHistory
     }
 
-    if (currentAlbums.length < 10) {
-      return [album, ...currentAlbums]
+    if (currentAlbumHistory.length < 10) {
+      return [album, ...currentAlbumHistory]
     } else {
-      const reducedAlbums = currentAlbums.slice(1 , 10);
-      return [album, ...reducedAlbums]
+      const reducedAlbumHistory = currentAlbumHistory.slice(1 , 10);
+      return [album, ...reducedAlbumHistory]
     }
+  }
+
+  /**
+   * Function to store album in Local Storage Cache
+   *
+   * @param currentAlbumCache The current album cache state retrieved from LS
+   * @param album The album being stored in cache
+   */
+  private updateAlbumCache(currentAlbumCache: Album[], album: Album): Album[] {
+    const albums = currentAlbumCache || [];
+
+    if (this.shouldUpdate(currentAlbumCache, album)) {
+
+    }
+
+    let updatedAlbums;
+
+    if (albums.length >= 10) {
+      const reducedAlbums = albums.slice(1 , 10);
+      updatedAlbums = [album, ...reducedAlbums];
+    } else {
+      updatedAlbums = [album, ...albums]
+    }
+
+    return updatedAlbums;
+  }
+
+  private shouldUpdate(albumsArr: Album[], album: Album): boolean {
+    return !albumsArr.some(item => item.id === album.id)
   }
 }

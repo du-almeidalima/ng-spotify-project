@@ -99,7 +99,7 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
     const mappedResponse: SearchResult = ItemMapper.mapToSearchResult(searchResponse);
     return append
       ? new MusicActions.AppendAlbumsToSearchResult(mappedResponse.albums)
-      : new MusicActions.SetSearchResult(mappedResponse)
+      : new MusicActions.SetSearchResult(mappedResponse);
   }
 
   private handleSearchFail(errorResponse: HttpErrorResponse): MusicActions.MusicActions {

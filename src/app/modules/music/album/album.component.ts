@@ -37,7 +37,6 @@ export class AlbumComponent implements OnInit {
         this.lastSearch = musicState.lastSearch;
       })
 
-    console.log(this.lastSearch)
     window.scrollTo(0, 0);
   }
 
