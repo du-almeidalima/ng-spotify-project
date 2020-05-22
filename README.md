@@ -13,6 +13,19 @@ The project [repository](https://github.com/du-almeidalima/ng-spotify-project)
 * **Spotify SSO**
 * **Music Preview**
 
+## Run
+
+To run this project just:
+```
+  npm install
+```
+
+and
+
+```
+  ng serve
+```
+
 ## Step 1 - Structuring the Project
 
 As a first step, since I've been gifted the screens already mocked up, I started to analyze the component, feature, state structure and replicated it in the app structure, creating the
@@ -96,6 +109,7 @@ Due to lack of my time, I could only test the AlbumService which is responsible 
 
 
 ## Built With
+* **[Angular](https://angular.io/)** - 9.1.6
 * **[NgRx](https://ngrx.io/)** - 9.1.2
 * **[NgRx-Store-Logger](https://www.npmjs.com/package/ngrx-store-logger)** - 0.2.4
 * **[Ngx-infinite-scroll](https://github.com/orizens/ngx-infinite-scroll)** - 9.0.0
