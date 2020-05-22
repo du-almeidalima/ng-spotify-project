@@ -1,7 +1,7 @@
-import { SearchResult } from "../../../shared/models/search-result";
-import { Album, Item } from "../../../shared/models/items";
-import { ResponseMessage } from "../../../shared/models/response-message";
-import { environment as env} from "../../../../environments/environment";
+import { SearchResult } from '../../../shared/models/search-result';
+import { Album, Item } from '../../../shared/models/items';
+import { ResponseMessage } from '../../../shared/models/response-message';
+import { environment as env} from '../../../../environments/environment';
 import * as MusicActions from './music.actions';
 
 export interface MusicState {
@@ -22,7 +22,7 @@ const initialState: MusicState = {
   message: null,
   currentItem: null,
   searchedAlbums: []
-}
+};
 
 const musicReducer = (state: MusicState = initialState, action: MusicActions.MusicActions) => {
   switch (action.type) {
@@ -32,7 +32,7 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         ...state,
         isLoading: true,
         lastSearch: action.payload
-      }
+      };
 
     case MusicActions.SEARCH_FAIL:
       return {
@@ -40,7 +40,7 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         isLoading: false,
         lastSearch: null,
         messages: action.payload
-      }
+      };
 
     case MusicActions.SET_SEARCH_RESULT:
       return {
@@ -49,7 +49,7 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         albumSearchOffset: env.searchOffset,
         searchResult: action.payload,
         messages: null
-      }
+      };
 
     case MusicActions.CLEAR_SEARCH_RESULT:
       return {
@@ -58,13 +58,13 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         albumSearchOffset: 0,
         isLoading: false,
         lastSearch: null
-      }
+      };
 
     case MusicActions.START_ALBUM_SEARCH:
       return {
         ...state,
         isLoading: true
-      }
+      };
 
     case MusicActions.SET_ALBUM:
       return {
@@ -72,7 +72,7 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
         isLoading: false,
         currentItem: action.payload,
         messages: null
-      }
+      };
 
     case MusicActions.APPEND_ALBUMS_TO_SEARCH_RESULT:
       return {
@@ -83,17 +83,17 @@ const musicReducer = (state: MusicState = initialState, action: MusicActions.Mus
           ...state.searchResult,
           albums: [...state.searchResult.albums, ...action.payload]
         }
-      }
+      };
 
     case MusicActions.SET_RECENTLY_VIEWED_ALBUMS:
       return {
         ...state,
         searchedAlbums: action.payload,
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export { musicReducer }
+export { musicReducer };

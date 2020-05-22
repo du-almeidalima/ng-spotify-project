@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {map} from "rxjs/operators";
-import {Subscription} from "rxjs";
+import {Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
+import {Subscription} from 'rxjs';
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 

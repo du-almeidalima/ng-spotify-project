@@ -1,5 +1,5 @@
 export class User {
-  constructor (
+  constructor(
     public name: string,
     public id: string,
     public profileImg: string,
@@ -10,8 +10,8 @@ export class User {
 
   // Check if the user session has not expired
   get token(): string {
-    if(!this._tokenExpirationDate || (new Date() > this._tokenExpirationDate)) {
-      return null
+    if (!this._tokenExpirationDate || (new Date() > this._tokenExpirationDate)) {
+      return null;
     }
 
     return this._token;

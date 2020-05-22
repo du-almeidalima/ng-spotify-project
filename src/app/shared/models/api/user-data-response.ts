@@ -10,5 +10,5 @@ export interface UserDataResponse {
     {
       url: string
     }
-  ]
+  ];
 }

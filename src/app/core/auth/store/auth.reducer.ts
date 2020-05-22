@@ -1,13 +1,13 @@
-import { User } from "../../../shared/models/user";
-import * as AuthActions from "./auth.actions";
+import { User } from '../../../shared/models/user';
+import * as AuthActions from './auth.actions';
 
 export interface AuthState {
-  user: User
+  user: User;
 }
 
 const initialState: AuthState = {
   user: null
-}
+};
 
 export const authReducer = (state: AuthState = initialState, action: AuthActions.AuthActions) => {
 
@@ -27,4 +27,4 @@ export const authReducer = (state: AuthState = initialState, action: AuthActions
     default:
       return state;
   }
-}
+};

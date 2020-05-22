@@ -19,7 +19,7 @@ export class DropdownDirective {
   }
 
   // For closing the Dropdown from Anywhere
-  @HostListener('document:click',['$event'])
+  @HostListener('document:click', ['$event'])
   public onOuterClick(event: Event){
 
     if (! this.elRef.nativeElement.contains(event.target)){

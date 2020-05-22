@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {Actions, ofType} from "@ngrx/effects";
-import {Observable} from "rxjs";
-import {take} from "rxjs/operators";
-import {AlbumService} from "./album.service";
-import {Album} from "../../../shared/models/items";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {Actions, ofType} from '@ngrx/effects';
+import {Observable} from 'rxjs';
+import {take} from 'rxjs/operators';
+import {AlbumService} from './album.service';
+import {Album} from '../../../shared/models/items';
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
 
@@ -19,7 +19,7 @@ export class AlbumResolverService implements Resolve<Album>{
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<Album> | Promise<Album> | Album {
 
-    const albumId = route.paramMap.get('albumId')
+    const albumId = route.paramMap.get('albumId');
 
     if (albumId) {
       // Check if album is already in cache

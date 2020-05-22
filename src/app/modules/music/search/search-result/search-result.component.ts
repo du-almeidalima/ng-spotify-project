@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {Subscription} from "rxjs";
-import {SearchResult} from "../../../../shared/models/search-result";
-import {SearchResultItem} from "../../../../shared/models/search-result-item";
-import {ItemMapper} from "../../../../shared/utils/item-mapper";
-import {Album, Item} from "../../../../shared/models/items";
-import {ResponseMessage} from "../../../../shared/models/response-message";
+import {Store} from '@ngrx/store';
+import {Subscription} from 'rxjs';
+import {SearchResult} from '../../../../shared/models/search-result';
+import {SearchResultItem} from '../../../../shared/models/search-result-item';
+import {ItemMapper} from '../../../../shared/utils/item-mapper';
+import {Album, Item} from '../../../../shared/models/items';
+import {ResponseMessage} from '../../../../shared/models/response-message';
 import * as fromApp from '../../../../store/app.reducer';
 import * as MusicActions from '../../store/music.actions';
 
@@ -43,10 +43,10 @@ export class SearchResultComponent implements OnInit, OnDestroy{
   }
 
   getResultItem(item: Item): SearchResultItem {
-    return ItemMapper.mapToSearchResultItem(item)
+    return ItemMapper.mapToSearchResultItem(item);
   }
 
   public onScrollDown(): void {
-    this.store.dispatch(new MusicActions.StartAlbumScrollSearch())
+    this.store.dispatch(new MusicActions.StartAlbumScrollSearch());
   }
 }

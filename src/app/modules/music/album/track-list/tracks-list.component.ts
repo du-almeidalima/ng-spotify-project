@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Track} from "../../../../shared/models/items";
+import {Track} from '../../../../shared/models/items';
 
 @Component({
   selector: 'app-track-list',
@@ -21,7 +21,7 @@ export class TracksListComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.audioPlayer.volume = this.AUDIO_VOLUME;
-    this.audioPlayer.addEventListener('ended', this.endAudio.bind(this))
+    this.audioPlayer.addEventListener('ended', this.endAudio.bind(this));
   }
 
   ngOnDestroy(): void {
@@ -51,10 +51,10 @@ export class TracksListComponent implements OnInit, OnDestroy{
         this.audioPlayer.currentTime = this.trackCurrentTime;
       } else {
         this.trackCurrentTime = 0;
-        this.audioPlayer.src = this.tracks[this.trackCurrentIndex].previewUrl
+        this.audioPlayer.src = this.tracks[this.trackCurrentIndex].previewUrl;
       }
 
-      this.trackIsPlaying = true
+      this.trackIsPlaying = true;
       this.audioPlayer.play();
     }
   }

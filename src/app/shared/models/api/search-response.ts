@@ -24,5 +24,5 @@ export interface SearchResponse {
         ]
       }
     ]
-  }
+  };
 }

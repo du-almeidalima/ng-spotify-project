@@ -1,23 +1,23 @@
-import {Injectable} from "@angular/core";
-import {Router} from "@angular/router";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {forkJoin, of} from "rxjs";
-import {map, switchMap, tap} from "rxjs/operators";
+import {forkJoin, of} from 'rxjs';
+import {map, switchMap, tap} from 'rxjs/operators';
 
-import {environment as env} from "../../../../environments/environment";
-import {UserDataResponse} from "../../../shared/models/api/user-data-response";
-import {AuthenticationResponse} from "../../../shared/models/api/authentication-response";
-import {User} from "../../../shared/models/user";
-import {AuthService} from "../auth.service";
-import * as AuthActions from "./auth.actions";
+import {environment as env} from '../../../../environments/environment';
+import {UserDataResponse} from '../../../shared/models/api/user-data-response';
+import {AuthenticationResponse} from '../../../shared/models/api/authentication-response';
+import {User} from '../../../shared/models/user';
+import {AuthService} from '../auth.service';
+import * as AuthActions from './auth.actions';
 
 
 @Injectable()
 export class AuthEffects {
   private readonly GET_CURRENT_USER = env.baseUrl + env.getCurrentUser;
 
-  constructor (
+  constructor(
     private actions$: Actions,
     private http: HttpClient,
     private router: Router,
@@ -32,27 +32,27 @@ export class AuthEffects {
       return forkJoin([
         this.http.get(
           this.GET_CURRENT_USER, {
-            headers: new HttpHeaders({'Authorization':  authToken})
+            headers: new HttpHeaders({Authorization:  authToken})
           }
         ),
         of(authResp.payload)
-      ])
+      ]);
     }),
     map((combined: any[]) => {
-      const userData: AuthenticationResponse & UserDataResponse  = {...combined[0], ...combined[1]}
+      const userData: AuthenticationResponse & UserDataResponse  = {...combined[0], ...combined[1]};
       return this.handleAuthenticationSuccess(userData);
     })
-  )
+  );
 
   @Effect({dispatch: false})
   authSuccess = this.actions$.pipe(
     ofType(AuthActions.AUTHENTICATION_SUCCESS),
     tap((authAction: AuthActions.AuthActions) => {
       if (authAction instanceof AuthActions.AuthenticationSuccess && authAction.payload.redirect) {
-        this.router.navigate(['/music/search'])
+        this.router.navigate(['/music/search']);
       }
     })
-  )
+  );
 
   @Effect()
   autoLogin = this.actions$.pipe(
@@ -61,7 +61,7 @@ export class AuthEffects {
       const restoredUser  = JSON.parse(localStorage.getItem(env.userToken));
       if (restoredUser) {
         const { name, id, profileImg, tokenType, _token, _tokenExpirationDate } = restoredUser;
-        const user = new User(name, id, profileImg, tokenType, _token, new Date(_tokenExpirationDate))
+        const user = new User(name, id, profileImg, tokenType, _token, new Date(_tokenExpirationDate));
 
         // Checking if token has expired
         if (user.token) {
@@ -69,7 +69,7 @@ export class AuthEffects {
           const expiration = ( new Date(_tokenExpirationDate).getTime() - new Date().getTime());
           this.authService.setLogoutTimer(expiration);
 
-          return new AuthActions.AuthenticationSuccess({ user, redirect:false });
+          return new AuthActions.AuthenticationSuccess({ user, redirect: false });
         } else {
 
           console.log(`User token has expired.`);
@@ -80,17 +80,17 @@ export class AuthEffects {
         return { type: 'NULL' };
       }
     })
-  )
+  );
 
   @Effect({ dispatch: false })
   authLogout = this.actions$.pipe(
     ofType(AuthActions.LOGOUT),
     tap(() => {
-      localStorage.removeItem(env.userToken)
+      localStorage.removeItem(env.userToken);
       this.authService.clearLogoutTimer();
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     })
-  )
+  );
 
   // Handlers
 

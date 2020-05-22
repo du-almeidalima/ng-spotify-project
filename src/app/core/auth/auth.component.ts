@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpParams} from "@angular/common/http";
-import {ActivatedRoute} from "@angular/router";
-import {map} from "rxjs/operators";
-import {Store} from "@ngrx/store";
-import {environment as env} from "../../../environments/environment";
-import {AuthenticationResponse} from "../../shared/models/api/authentication-response";
-import {ResponseMessage} from "../../shared/models/response-message";
-import {MessageSeverity} from "../../shared/models/enums/message-severity";
+import {HttpParams} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {map} from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {environment as env} from '../../../environments/environment';
+import {AuthenticationResponse} from '../../shared/models/api/authentication-response';
+import {ResponseMessage} from '../../shared/models/response-message';
+import {MessageSeverity} from '../../shared/models/enums/message-severity';
 import * as fromApp from '../../store/app.reducer';
 import * as AuthActions from './store/auth.actions';
 
@@ -30,10 +30,10 @@ export class AuthComponent implements OnInit{
         token_type: resp.get('token_type'),
         expires_in: +resp.get('expires_in'),
         state: resp.get('state')
-      }
+      };
 
       this.handleResponse(authResponse);
-    })
+    });
 
     if (this.route.snapshot.queryParams.error) {
       this.handleErrorResponse(this.route.snapshot.queryParams.error);
@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit{
   private handleResponse(authResponse: AuthenticationResponse) {
     // Success
     if (authResponse.access_token) {
-      this.store.dispatch(new AuthActions.FetchUserData(authResponse))
+      this.store.dispatch(new AuthActions.FetchUserData(authResponse));
     }
   }
 
@@ -64,7 +64,7 @@ export class AuthComponent implements OnInit{
         this.errorResponse = {
           severity: MessageSeverity.ERROR,
           message: `Error: The user didn't grant the permissions required`
-        }
+        };
         break;
     }
   }

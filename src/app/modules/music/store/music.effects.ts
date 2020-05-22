@@ -1,17 +1,17 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
-import {Store} from "@ngrx/store";
-import {Actions, Effect, ofType} from "@ngrx/effects";
-import {of} from "rxjs";
-import {catchError, map, switchMap, withLatestFrom} from "rxjs/operators";
-import {environment as env} from "../../../../environments/environment";
-import {SearchResponse} from "../../../shared/models/api/search-response";
-import {SearchResult} from "../../../shared/models/search-result";
-import {ItemMapper} from "../../../shared/utils/item-mapper";
-import {AlbumService} from "../album/album.service";
-import {MessageSeverity} from "../../../shared/models/enums/message-severity";
-import {AlbumSearchResponse} from "../../../shared/models/api/album-search-response";
-import {Album} from "../../../shared/models/items";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {Store} from '@ngrx/store';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {of} from 'rxjs';
+import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {environment as env} from '../../../../environments/environment';
+import {SearchResponse} from '../../../shared/models/api/search-response';
+import {SearchResult} from '../../../shared/models/search-result';
+import {ItemMapper} from '../../../shared/utils/item-mapper';
+import {AlbumService} from '../album/album.service';
+import {MessageSeverity} from '../../../shared/models/enums/message-severity';
+import {AlbumSearchResponse} from '../../../shared/models/api/album-search-response';
+import {Album} from '../../../shared/models/items';
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
 
@@ -39,35 +39,35 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
       return this.http.get<SearchResponse>(
         this.SEARCH,
         {
-          params: params
+          params
         }
       ).pipe(
         map((searchResponse: SearchResponse) => {
-          return this.handleSearchResult(searchResponse, false)
+          return this.handleSearchResult(searchResponse, false);
         }),
         catchError((err: HttpErrorResponse) => {
           return of(this.handleSearchFail(err));
         })
-      )
+      );
     })
-  )
+  );
 
   @Effect()
   startAlbumSearch = this.actions$.pipe(
     ofType(MusicActions.START_ALBUM_SEARCH),
     switchMap((action: MusicActions.StartAlbumSearch) => {
-      const albumSearchUrl = `${this.ALBUM_SEARCH}/${action.payload}`
+      const albumSearchUrl = `${this.ALBUM_SEARCH}/${action.payload}`;
       return this.http.get<AlbumSearchResponse>(albumSearchUrl)
         .pipe(
           map((searchResponse: AlbumSearchResponse) => {
-            return this.handleAlbumSearchResult(searchResponse)
+            return this.handleAlbumSearchResult(searchResponse);
           }),
           catchError((err: HttpErrorResponse) => {
             return of(this.handleSearchFail(err));
           })
-        )
+        );
     })
-  )
+  );
 
   @Effect()
   startAlbumScrollSearch = this.actions$.pipe(
@@ -81,18 +81,18 @@ private readonly ALBUM_SEARCH = env.baseUrl + env.albums;
       return this.http.get<SearchResponse>(
         this.SEARCH,
       {
-        params: params
+        params
       })
       .pipe(
         map((searchResponse: SearchResponse) => {
-          return this.handleSearchResult(searchResponse, true)
+          return this.handleSearchResult(searchResponse, true);
         }),
         catchError((err: HttpErrorResponse) => {
           return of(this.handleSearchFail(err));
         })
-      )
+      );
     })
-  )
+  );
 
   // Handlers
   private handleSearchResult(searchResponse: SearchResponse, append: boolean): MusicActions.MusicActions {

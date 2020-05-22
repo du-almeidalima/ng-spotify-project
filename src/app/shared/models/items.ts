@@ -1,4 +1,4 @@
-import { ItemType } from "./enums/item-type";
+import { ItemType } from './enums/item-type';
 
 export interface Artist {
   name: string;
@@ -12,7 +12,7 @@ export interface Album {
   type: ItemType.album;
   images: string[];
   artists: Artist[];
-  tracks?: Track[]
+  tracks?: Track[];
 }
 
 export interface Track {

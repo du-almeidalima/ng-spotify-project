@@ -1,4 +1,4 @@
-import { Album } from "./items";
+import { Album } from './items';
 
 /**
  * @description This is the container for the search response, if there's a need to include more than one type (Tracks,
@@ -9,5 +9,5 @@ import { Album } from "./items";
  */
 
 export interface SearchResult {
-  albums: Album[]
+  albums: Album[];
 }

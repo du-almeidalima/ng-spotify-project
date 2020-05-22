@@ -1,7 +1,7 @@
-import { Action } from "@ngrx/store";
-import { SearchResult } from "../../../shared/models/search-result";
-import { Album} from "../../../shared/models/items";
-import { ResponseMessage } from "../../../shared/models/response-message";
+import { Action } from '@ngrx/store';
+import { SearchResult } from '../../../shared/models/search-result';
+import { Album} from '../../../shared/models/items';
+import { ResponseMessage } from '../../../shared/models/response-message';
 
 export const START_SEARCH = '[Music] Start Search';
 export const SEARCH_FAIL = '[Music] Search Fail';
@@ -15,17 +15,17 @@ export const SET_RECENTLY_VIEWED_ALBUMS = '[Music] Set Recently Viewed Albums';
 
 export class StartSearch implements Action {
   readonly type = START_SEARCH;
-  constructor (public payload: string) {}
+  constructor(public payload: string) {}
 }
 
 export class SearchFail implements Action {
   readonly type = SEARCH_FAIL;
-  constructor (public payload: ResponseMessage) {}
+  constructor(public payload: ResponseMessage) {}
 }
 
 export class SetSearchResult implements Action {
   readonly type = SET_SEARCH_RESULT;
-  constructor (public payload: SearchResult) {}
+  constructor(public payload: SearchResult) {}
 }
 
 

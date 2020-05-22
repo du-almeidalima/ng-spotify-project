@@ -1,7 +1,7 @@
-import {AlbumHistory} from "./album-history";
-import {Album} from "../items";
+import {AlbumHistory} from './album-history';
+import {Album} from '../items';
 
 export interface AlbumsCacheLocalStorage {
-  albumHistory: AlbumHistory[],
-  albums: Album[]
+  albumHistory: AlbumHistory[];
+  albums: Album[];
 }

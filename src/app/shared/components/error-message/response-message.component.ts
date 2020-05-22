@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {MessageSeverity} from "../../models/enums/message-severity";
-import {ResponseMessage} from "../../models/response-message";
+import {MessageSeverity} from '../../models/enums/message-severity';
+import {ResponseMessage} from '../../models/response-message';
 
 @Component({
   selector: 'app-response-message',
@@ -22,7 +22,7 @@ export class ResponseMessageComponent {
   get styleClass() {
     switch (this.message.severity) {
       case MessageSeverity.ERROR:
-        return 'error-message'
+        return 'error-message';
 
       default:
         return 'default-message';

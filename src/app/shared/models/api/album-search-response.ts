@@ -26,5 +26,5 @@ export interface AlbumSearchResponse {
         preview_url: string;
       }
     ]
-  }
+  };
 }

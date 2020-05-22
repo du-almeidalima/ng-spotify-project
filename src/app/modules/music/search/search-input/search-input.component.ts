@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { Location } from "@angular/common";
-import { Store } from "@ngrx/store";
-import { Subscription } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 import * as fromApp from '../../../../store/app.reducer';
 import * as MusicActions from '../../store/music.actions';
 
@@ -32,7 +32,7 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
       )
       .subscribe(lastSearch => {
         this.searchInput.nativeElement.value = lastSearch;
-      })
+      });
   }
 
   ngOnDestroy(): void {
@@ -48,10 +48,10 @@ export class SearchInputComponent implements AfterViewInit, OnDestroy {
     this.location.go('/music/search/' + searchTerm);
     this.searchTimeoutId = setTimeout(() => {
       if (searchTerm !== '') {
-        this.store.dispatch(new MusicActions.StartSearch(searchTerm))
+        this.store.dispatch(new MusicActions.StartSearch(searchTerm));
       } else {
         this.store.dispatch(new MusicActions.ClearSearchResult());
       }
-    }, 1000)
+    }, 1000);
   }
 }

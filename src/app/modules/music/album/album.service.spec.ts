@@ -1,12 +1,12 @@
 import {TestBed} from '@angular/core/testing';
 
-import {AlbumsCacheLocalStorage} from "../../../shared/models/local-storage/albums-cache-local-storage";
-import {provideMockStore} from "@ngrx/store/testing";
+import {AlbumsCacheLocalStorage} from '../../../shared/models/local-storage/albums-cache-local-storage';
+import {provideMockStore} from '@ngrx/store/testing';
 import {AlbumService} from './album.service';
-import {ItemType} from "../../../shared/models/enums/item-type";
-import {Album} from "../../../shared/models/items";
-import {AppState} from "../../../store/app.reducer";
-import {AlbumHistory} from "../../../shared/models/local-storage/album-history";
+import {ItemType} from '../../../shared/models/enums/item-type';
+import {Album} from '../../../shared/models/items';
+import {AppState} from '../../../store/app.reducer';
+import {AlbumHistory} from '../../../shared/models/local-storage/album-history';
 
 describe('AlbumService', () => {
   // Test Variables
@@ -14,7 +14,7 @@ describe('AlbumService', () => {
   const initialState: AppState = {
     music: null,
     auth: null
-  }
+  };
   const albums: Album[] = [
     {
       id: 'AB1',
@@ -40,10 +40,10 @@ describe('AlbumService', () => {
       tracks: [null],
       artists: [{ id: 'AR3', name: 'Fake Artist 3', type: ItemType.artist}],
     },
-  ]
+  ];
   const mockAlbumHistory: AlbumsCacheLocalStorage = {
     albumHistory: [
-      { userId: 'testUser1', albums: albums },
+      { userId: 'testUser1', albums },
       { userId: 'testUser2', albums: []},
       { userId: 'testUser3', albums: [
           {
@@ -52,12 +52,12 @@ describe('AlbumService', () => {
             images: ['https://i.pinimg.com/originals/b3/51/e7/b351e7c21017e908d42a169e031510df.jpg'],
             type: ItemType.album,
             tracks: [null],
-            artists: [{ id: 'AR3', name: 'Fake Artist 2', type: ItemType.artist}],}
+            artists: [{ id: 'AR3', name: 'Fake Artist 2', type: ItemType.artist}], }
         ]
       }
     ],
-    albums: albums
-  }
+    albums
+  };
 
   // Tests
   beforeEach(() => {
@@ -76,7 +76,7 @@ describe('AlbumService', () => {
   });
 
   it('should get the Album by Id', () => {
-    const mockAlbum: Album = mockAlbumHistory.albums[0]
+    const mockAlbum: Album = mockAlbumHistory.albums[0];
     const album: Album = service.getAlbumFromCache('AB1');
 
     expect(album).toBeTruthy();
@@ -96,7 +96,7 @@ describe('AlbumService', () => {
 
   it('should return a AlbumHistory object with user property if the user don\'t have a AlbumHistory yet',
     () => {
-    const mockUser4AlbumHistory: AlbumHistory = { userId: 'testUser4', albums: [] }
+    const mockUser4AlbumHistory: AlbumHistory = { userId: 'testUser4', albums: [] };
 
     const user4AlbumsHistory: AlbumHistory  = service.getUserAlbumHistory('testUser4');
 
@@ -113,5 +113,5 @@ describe('AlbumService', () => {
       spyOn(localStorage, 'getItem').and.returnValue(null);
       emptyAlbum = service.getAlbumFromCache('THE_FORBIDDEN_ELVIS_ALBUM');
       expect(emptyAlbum).toBeFalsy();
-    })
+    });
 });

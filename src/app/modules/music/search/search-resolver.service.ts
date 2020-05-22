@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {map, take} from "rxjs/operators";
+import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {map, take} from 'rxjs/operators';
 import * as fromApp from '../../../store/app.reducer';
 import * as MusicActions from '../store/music.actions';
 
@@ -21,13 +21,13 @@ export class SearchResolverService implements Resolve<void>{
         map(musicState => musicState.lastSearch)
       )
       .subscribe(lastSearch => {
-        const term = route.paramMap.get('term')
+        const term = route.paramMap.get('term');
         if (term && term !== lastSearch) {
           this.lastSearch = term;
-          this.store.dispatch(new MusicActions.StartSearch(route.paramMap.get('term')))
+          this.store.dispatch(new MusicActions.StartSearch(route.paramMap.get('term')));
         } else if (term === null || term === '') {
-          this.store.dispatch(new MusicActions.ClearSearchResult())
+          this.store.dispatch(new MusicActions.ClearSearchResult());
         }
-      })
+      });
   }
 }

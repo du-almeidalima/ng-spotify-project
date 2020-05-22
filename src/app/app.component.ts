@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
+import {Store} from '@ngrx/store';
+import {map} from 'rxjs/operators';
 import * as fromApp from './store/app.reducer';
 import * as AuthActions from './core/auth/store/auth.actions';
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit{
     this.store.select('auth').pipe( map(authState => authState.user))
       .subscribe( user => {
         this.isUserAuthenticated = !!user;
-      })
+      });
   }
 }
 

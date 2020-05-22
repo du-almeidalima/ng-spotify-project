@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Track} from "../../../../../shared/models/items";
+import {Track} from '../../../../../shared/models/items';
 
 @Component({
   selector: 'app-track',
