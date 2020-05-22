@@ -2,6 +2,8 @@
 
 This is my project for the Venturus code challenge. In this document I will describe my development process.
 
+Featuring [video](https://youtu.be/f_VKp_qUt-M).
+
 The final version can be seen in this [link](https://ng-spotify-project.web.app/)
 
 The project [repository](https://github.com/du-almeidalima/ng-spotify-project)
